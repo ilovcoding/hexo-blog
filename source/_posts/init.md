@@ -47,4 +47,8 @@ deploy:
   repo: GitHub地址
   branch: master
 ```
+- 运行 `hexo generate` 生成部署文件到public文件夹
 - 运行 `hexo deploy` 部署到相应的仓库
+<!-- > 注意下次部署 可以直接运行 `hexo generate` 然后到`.deploy_git`目录中手动提交 -->
+## 写在最后
+> 更多melody主题的用法，参看[中文文档](https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans/)

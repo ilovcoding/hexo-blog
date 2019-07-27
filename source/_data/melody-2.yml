@@ -8,7 +8,7 @@ subtitle:
 description:
 keywords:
 author: 琅琊旻
-language: zh-Hans
+language: 
 timezone:
 
 # URL
@@ -74,11 +74,12 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: melody
+# 主题导航菜单
+
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: git@github.com:wmwgithub/wmwgithub.github.io.git
-  branch: master
-  message: "init: 添加自己域名"
+  type:
+  
