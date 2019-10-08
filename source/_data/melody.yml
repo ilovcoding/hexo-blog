@@ -125,7 +125,8 @@ cdn:
 # ---------------
 avatar:
 
-top_img: http://qiniu.wangminwei.top/hexo/bg1.jpg # false or url of img
+#top_img: http://qiniu.wangminwei.top/hexo/bg1.jpg # false or url of img
+top_img: false # false or url of img
 
 post_meta:
   date_type: created # created or updated
@@ -196,20 +197,20 @@ disqus:
 # enable: false
 # uid:
 
-# gitment
-# enable: false
-# owner:
-# repo:
-# client_id:
-# client_secret:
+gitment:
+  enable: false
+  owner: wmwgithub
+  repo: wmwgithub.github.io
+  client_id: 55b93500c699e46ecd3c
+  client_secret: b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9
 
-# gitalk:
-#   enable: false
-#   client_id:
-#   client_secret:
-#   repo:
-#   owner:
-#   admin:
+gitalk: 
+  enable: true
+  client_id: 55b93500c699e46ecd3c
+  client_secret: b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9
+  repo: wmwgithub.github.io
+  owner: wmwgithub
+  admin: ['wmwgithub']
 
 # valine comment system. https://valine.js.org
 # valine:

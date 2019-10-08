@@ -81,4 +81,4 @@ deploy:
   type: git
   repo: git@github.com:wmwgithub/wmwgithub.github.io.git
   branch: master
-  message: "init: 添加自己域名"
+  message: "修改/增加新帖子"

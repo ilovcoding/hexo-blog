@@ -17,7 +17,7 @@ cd test
 npm install
 hexo server
 ```
-<!-- ![安装Hexo](./images/init/安装Hexo.png) -->
+![安装Hexo](../../../../images/init/hexo.png)
 ## 安装主题
 > 我选择的是melody个人觉得这款主题真的很好看用起来也很方便。[主题GitHub地址](https://github.com/Molunerfinn/hexo-theme-melody/tree/fca917dd321bcda46b2a7dcddcf18cbe408cff18)
 
@@ -27,11 +27,11 @@ hexo server
 git clone -b master https://github.com/Molunerfinn/hexo-theme-melody themes/melody
 npm install hexo-renderer-jade hexo-renderer-stylus --save
 ```
-<!-- ![安装主题](./images/init/安装主题.png) -->
+![安装主题](../../../../images/init/melody.png)
 - 修改配置文件，使用先安装的主题
 
 修改test文件夹里面的`_config.yml`的文件的`theme landspcape`改成`theme melody`然后运行`hexo server`启动项目
-<!-- ![修改配置文件](./images/init/修改配置文件.png) -->
+![修改配置文件](../../../../images/init/set.png)
 ## 创建新帖子
 
 ``` 
@@ -50,5 +50,10 @@ deploy:
 - 运行 `hexo generate` 生成部署文件到public文件夹
 - 运行 `hexo deploy` 部署到相应的仓库
 <!-- > 注意下次部署 可以直接运行 `hexo generate` 然后到`.deploy_git`目录中手动提交 -->
+## 添加评论功能
+   1. 进入主题的插件管理网站的[评论插件展示版块](https://molunerfinn.com/hexo-theme-melody-doc/third-party-support.html#comments),这边有很多评论版块，我使用的是`Gittalk`
+   2. 如果使用GitHub相关评论工具需要在 [GitHub官网](https://github.com/settings/applications/new)注册一个 OAuth application `Homepage URL`和 `Authorization callback URL`都可填你的博客域名,其他评论工具我没有使用过
+   2. 修改 `source/_data/melody.yml`文件，其中`client_id   client_secret` 字段是之前注册生成的 `admin`字段就写自己的GitHub名字(数组形式：['张三']) 如果博客是共同管理的把其他成员也写进去即可：['张三','李四']。
+
 ## 写在最后
 > 更多melody主题的用法，参看[中文文档](https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans/)
