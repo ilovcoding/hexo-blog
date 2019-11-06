@@ -1,5 +1,5 @@
 ---
-title: JavaScript设计模式1
+title: JavaScript设计模式(零)-前置知识
 date: 2019-09-16 13:39:25
 tags:  JavaScript设计模式
 
@@ -7,7 +7,7 @@ tags:  JavaScript设计模式
 
 ### call apply bind 简单运用
 
-1. `talk is cheap show me the code`
+1. 上手一个小例子
 
    ```javascript
    let obj = {
@@ -67,7 +67,7 @@ tags:  JavaScript设计模式
    
 ### 闭包的运用
 
-####  封装变量，延长变量的生命周期
+1. 封装变量，延长变量的生命周期
 
 ```javascript
 function fun1() {
@@ -83,7 +83,8 @@ console.log(f(),f(),f()) // 2 3 4
 
 > 会发现 f函数每次运行之后他的a变量生命并没有被销毁，下次运行时 a变量的值直接被记录了下来
 
-1.  封装变量，延长变量的生命周期的运用 js随机数的生成
+
+-   封装变量，延长变量的生命周期的运用 js随机数的生成
 
    ```javascript
    
@@ -184,6 +185,7 @@ console.log(f(),f(),f()) // 2 3 4
    
    > 调用cost函数的时候，如果明确的带上了一些参数，此时不会进行真正的求值运算，而是把这些参数保持起来，保存到`args`数组中，不传参时再进行求值运算。
    
+   ### 函数节流
    
    
    

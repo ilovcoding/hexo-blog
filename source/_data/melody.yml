@@ -123,7 +123,7 @@ cdn:
 
 # Post info settings
 # ---------------
-avatar:
+avatar: http://blogqiniu.wangminwei.top/201910302316_962.jpg
 
 #top_img: http://qiniu.wangminwei.top/hexo/bg1.jpg # false or url of img
 top_img: false # false or url of img
@@ -254,15 +254,16 @@ busuanzi:
 
 # Sidebar Settings
 # ---------------
-#links_title: Links
-#links:
-#Name: url
+links_title: 友情链接
+links:
+  Dzou's Blog: https://www.dzou.top
+  Boyn: https://boyn.top 
 
 # Follow Me Button
-# follow:
-#   enable: true
-#   url: ''
-#   text: ''
+follow:
+  enable: true
+  url: 'https://github.com/wmwgithub'
+  text: GitHub关注
 
 # Ads
 # ---------------
