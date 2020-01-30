@@ -314,3 +314,6 @@ let addEvent = (function () {
 
 > 案例源码[GitHub链接](https://github.com/wmwgithub/blog-demo/blob/master/2019_11_6/3/index.html)
 
+*以上内容是我看完 JavaScript设计模式与开发实战 第一部分之后自己总结的，感谢曾(da)探(lao)*
+
+<center><b>欢迎大家评论区交流</b></center>
