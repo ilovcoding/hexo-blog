@@ -63,8 +63,10 @@ algolia_search:
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=local-search
 # ---------------
 local_search:
-  enable: false
-
+  enable: true
+  labels:
+    input_placeholder: Search
+    hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
 # MathJax
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=mathjax
 # ---------------
@@ -179,8 +181,8 @@ slide:
 # Share System
 # ---------------
 addThis:
-  enable: false
-  #pubid:
+  enable: true
+  pubid: ra-5e33bf91133aab4b
 
 # sharejs:
 # enable: false
