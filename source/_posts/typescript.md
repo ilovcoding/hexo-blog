@@ -60,6 +60,32 @@ console.log(success) // 0
 console.log(Flag.fail) // 1
 console.log(Flag.unknow) // unknow
 ```
-#### 空类型
+
+#### never类型
+> null和undefined,是never 类型的子集。还有一种是不会出现的类型,例如没有返回值的函数。
+```TS
+let num:null = null
+console.log(num)  // null
+let unde:undefined
+console.log(unde) // undefined
+```
+### 函数的重载
+> 最后必须要给出函数的实现。
+```TS
+  function userInfo(name: string): string;
+  function userInfo(age: number): number;
+  function userInfo(info: any): any {
+    if (typeof info === 'string') {
+      return `my name is ${info}`
+    } else {
+      return `my age is ${info}`
+    }
+  }
+  console.log(userInfo('wmw'))  // my name is wmw
+  console.log(userInfo(18)) //  my age is 18
+```
+### 装饰器
+> TS装饰器执行顺序。属性> 方法> 方法参数> 类装饰器。如果有多个装饰器他会自下而上，从左到右执行。
 ### 设计模式
 > [源码地址](https://github.com/wmwgithub/typescript-design-mode)
+> 

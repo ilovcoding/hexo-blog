@@ -549,4 +549,56 @@ static int len;
         }
     }
 ```
+> JavaScript 实现基本堆排序
+```JS
+class TreeNode {
+  constructor(val) {
+    this.val = val
+    this.left = null
+    this.right = null
+  }
+}
+class HeapSort {
+  constructor() {
+    // 定义一个变量存放二叉搜索树
+    this.tree = null
+  }
+  insert(val) {
+    if (this.tree == null) {
+      this.tree = new TreeNode(val)
+      return
+    }
+    let pTree = this.tree // 存一下指针
+    while (pTree != null) {
+      // 开始执行插入的流程
+      if (pTree.val >= val) {
+        if (pTree.left == null) {
+          pTree.left = new TreeNode(val)
+          return
+        }
+        pTree = pTree.left
+      } else {
+        if (pTree.right == null) {
+          pTree.right = new TreeNode(val)
+          return
+        }
+        pTree = pTree.right
+      }
+    }
+  }
+}
+// 中序遍历
+function inOrder(tree) {
+  if (tree == null) {
+    return
+  }
+  inOrder(tree.left)
+  console.log(tree.val)
+  inOrder(tree.right)
+}
 
+let heapSort = new HeapSort()
+let testArray = [7, 1, 9, 3, 8, 5, 6, 4]
+testArray.map(value => heapSort.insert(value))
+inOrder(heapSort.tree) // 1 3 4 5 6 7 8 9
+```
