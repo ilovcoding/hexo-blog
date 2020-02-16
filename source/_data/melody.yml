@@ -87,7 +87,7 @@ fireworks: true
 
 # Analysis
 # ---------------
-baidu_analytics:
+baidu_analytics: 64ba0ae72cc35f37b1cf6e8b4e6262be
 
 google_analytics:
 

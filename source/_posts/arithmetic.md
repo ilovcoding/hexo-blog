@@ -63,7 +63,19 @@ public static void bubbleSort(int array[]) {
         }
     }
 ```
-
+**JavaScript实现**
+```TS
+  method(arr: number[]): number[] {
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i] > arr[j]) {
+          [arr[i], arr[j]] = [arr[j], arr[i]]
+        }
+      }
+    }
+    return arr
+  }
+```
 ### 4、选择排序
 
 #### （1）选择排序的介绍
@@ -98,7 +110,25 @@ public static void selectionSort(int[] array) {
         }
     }
 ```
-
+**JavaScript实现**
+```TS
+  method(arr: number[]): number[] {
+    for (let i = 0; i < arr.length; i++) {
+      let min = arr[i], minIndex = i;
+      for (let j = i + 1; j < arr.length; j++) {
+        if (min > arr[j]) {
+          // 每轮循环都获取到最小值
+          min = arr[j]
+          minIndex = j
+        }
+      }
+      // 确定最小值之后 再进行交换
+      arr[minIndex] = arr[i]
+      arr[i] = min
+    }
+    return arr
+  }
+```
 ### 5、插入排序
 
 #### （1）插入排序的介绍
@@ -121,7 +151,7 @@ public static void selectionSort(int[] array) {
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181102_303.jpg?/)
+![插入排序](http://blogqiniu.wangminwei.top/201909181102_303.jpg?/)
 
 #### （4）代码演示
 
@@ -138,6 +168,24 @@ public static void insertionSort(int[] array) {
             array[preIndex + 1] = current;
         }
     }
+```
+JavaScript代码实现
+```TS
+  method(arr: number[]): number[] {
+    let resArr = [arr[0]]
+    for (let i = 1; i < arr.length; i++) {
+      let insertIndex = 0
+      while (insertIndex < resArr.length) {
+        if (resArr[insertIndex] < arr[i]) {
+          insertIndex++
+        } else {
+          break
+        }
+      }
+      resArr.splice(insertIndex, 0, arr[i])
+    }
+    return resArr
+  }
 ```
 
 ### 6、归并排序
@@ -204,7 +252,7 @@ public static void insertionSort(int[] array) {
 ![](http://blogqiniu.wangminwei.top/201909181103_889.jpg?/)
 
 #### 	（4）代码演示
-
+**Java**  实现
 ```java
 /**
      * 快速排序方法
@@ -254,6 +302,44 @@ public static void insertionSort(int[] array) {
         array[j] = temp;
     }
 ```
+**JavaScript实现**
+```JavaScript
+function quickSort(arr: any[], left: number, right: number) {
+    let l = left // 左索引
+    let r = right // 右索引
+    let pivot = arr[Math.floor((l + r) / 2)]
+    while (l < r) {
+    //中线 在左边找 到一个比中间值大的值
+    while (arr[l] < pivot) {
+        l += 1
+    }
+    // 在中线右边找 比中间值小到值
+    while (arr[r] > pivot) {
+        r -= 1
+    }
+    if (l >= r) {
+        // 说明 左边都是比中值小的值 ，右边都是比中值大的值
+        break;
+    }
+    // l<r的时候交换 索引 l,r 对应的值
+    [arr[l], arr[r]] = [arr[r], arr[l]]
+    if (arr[l] == pivot || arr[r] == pivot) {
+        break;
+    }
+    }
+    if (l == r) {
+        l += 1
+        r -= 1
+    }
+    if (left < r) {
+        quickSort(arr, left, r)
+    }
+    if (right > l) {
+        quickSort(arr, l, right)
+    }
+    return arr
+}
+```
 
 ### 8、希尔排序
 
@@ -300,7 +386,47 @@ public static void insertionSort(int[] array) {
         return array;
     }
 ```
-
+JavaScript 实现希尔排序的交换模式,因为交换很耗时
+```TS
+method(arr: number[]): number[] {
+    let offSet = Math.floor(arr.length / 2)
+    while (offSet > 0) {
+      for (let i = 0; i <= arr.length - offSet; i++) {
+        for (let j = i; j < arr.length - offSet; j += offSet) {
+          if (arr[j] > arr[j + offSet]) {
+            [arr[j], arr[j + offSet]] = [arr[j + offSet], arr[j]]
+          }
+        }
+      }
+      offSet = Math.floor(offSet / 2)
+    }
+    return arr
+  }
+```
+JavaScript 实现希尔排序的移位模式
+```TS
+  method(arr: number[]): number[] {
+    let offSet = Math.floor(arr.length / 2)
+    while (offSet > 0) {
+      // console.log('此轮offset为', offSet)
+      for (let i = 0; i < arr.length - offSet; i++) {
+        let min = arr[i], minIndex: number = i
+        for (let j = i; j < arr.length; j += offSet) {
+          // 修改查找方法 为 类选择排序
+          //开始查找最小的index
+          if (arr[j] < min) {
+            min = arr[j]
+            minIndex = j
+          }
+        }
+        arr[minIndex] = arr[i]
+        arr[i] = min
+      }
+      offSet = Math.floor(offSet / 2)
+    }
+    return arr
+  }
+```
 ### 9、计数排序
 
 #### （1）计数排序的介绍
@@ -355,7 +481,32 @@ public static void insertionSort(int[] array) {
         return array;
     }
 ```
-
+**JavaScript实现**
+```TS
+  findMinMax(arr: number[]): number[] {
+    let minMax = [arr[0], arr[0]]
+    for (let i = 0; i < arr.length; i++) {
+      if (minMax[0] > arr[i]) minMax[0] = arr[i];
+      if (minMax[1] < arr[i]) minMax[1] = arr[i];
+    }
+    return minMax
+  }
+  method(arr: number[]): number[] {
+    let [min, max] = this.findMinMax(arr)
+    let countArr = new Array(max - min + 1)
+    arr.map(value => {
+      countArr[value - min] ? countArr[value - min] += 1 : countArr[value - min] = 1
+    })
+    arr = []
+    countArr.map((value, index) => {
+      while (value >= 1) {
+        arr.push(min + index)
+        value--
+      }
+    })
+    return arr
+  }
+```
 ### 10、桶排序
 
 #### （1）桶排序的介绍
@@ -476,7 +627,38 @@ public static void insertionSort(int[] array) {
         return array;
     }
 ```
-
+**JavaScript实现**
+```TS
+  method(arr: number[]): number[] {
+    //定义10个装数的桶
+    let bucket = new Array(10)
+    for (let i = 0; i < 10; i++) {
+      bucket[i] = []
+    }
+    // 取出个位数做 放入桶中
+    arr = arr.filter(value => { bucket[value % 10].push(value) })
+    bucket.map((value) => {
+      while (value.length > 0) {
+        arr.push(value.shift())
+      }
+    })
+    // 取出 10位数 放桶中
+    arr = arr.filter(value => { bucket[Math.floor((value / 10)) % 10].push(value) })
+    bucket.map((value) => {
+      while (value.length > 0) {
+        arr.push(value.shift())
+      }
+    })
+    // 取出百位数 放入桶中
+    arr = arr.filter(value => { bucket[Math.floor((value / 100)) % 10].push(value) })
+    bucket.map((value) => {
+      while (value.length > 0) {
+        arr.push(value.shift())
+      }
+    })
+    return arr
+  }
+```
 ### 12、堆排序
 
 #### （1）堆排序的介绍
@@ -549,7 +731,7 @@ static int len;
         }
     }
 ```
-> JavaScript 实现基本堆排序
+**JavaScript 实现基本堆排序**
 ```JS
 class TreeNode {
   constructor(val) {
@@ -602,3 +784,7 @@ let testArray = [7, 1, 9, 3, 8, 5, 6, 4]
 testArray.map(value => heapSort.insert(value))
 inOrder(heapSort.tree) // 1 3 4 5 6 7 8 9
 ```
+### 最后总结
+不同的排序算法有不同的应用场景,一般情况下如果数据都是正数，可以考虑采用基数排序，计数排序，桶排序之类的排序算法。其中计数排序算是最耗费空间的了，也是拿空间换时间最明显的那个😁
+
+>博客中中JavaScript部分是我自己写的,Java和文字引用于马老师,*马士兵教育公开课*。JS部分[源码](https://github.com/wmwgithub/typescript-design-mode/tree/master/src/sort)

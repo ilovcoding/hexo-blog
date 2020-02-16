@@ -48,11 +48,11 @@ tags:
   > 先遍历左节点再遍历右节点,最后遍历这个节点本身。
 
   ![来源：极客时间-数据结构算法之美](http://blogqiniu.wangminwei.top/202002021348_774.png?/)
+ 
+ **递归模式遍历**
 
-  ```
   前序遍历的递推公式：
-  preOrder(r) = print r->preOrder(r->left)->preOrder(r->right)
-  
+  ```Java
   void preOrder(Node* root) { 
     if (root == null) return;
      print root // 此处为伪代码，表示打印 root 节点 
@@ -60,10 +60,8 @@ tags:
      preOrder(root->right);  
   }
   ```
-
-  ```
   中序遍历的递推公式：
-  inOrder(r) = inOrder(r->left)->print r->inOrder(r->right) 
+  ```Java
   void inOrder(Node* root) { 
     if (root == null) return; 
     inOrder(root->left);
@@ -71,16 +69,18 @@ tags:
     inOrder(root->right);
   }
   ```
-  ``` 
   后序遍历的递推公式：
-  postOrder(r) = postOrder(r->left)->postOrder(r->right)->print r
-
+  ```Java
   void postOrder(Node* root) { 
     if (root == null) return; 
     postOrder(root->left); 
     postOrder(root->right); 
     print root // 此处为伪代码，表示打印 root 节点
   }
+  ```
+
+  **迭代模式遍历**
+  ```
   ```
 ### 二叉查找树(Binary Search Tree)
   >二叉查找树要求,在树的任意一个节点,在其左节点的值都要小于该节点的值,在其右节点的值都要大于该节点的值,因此二叉查找树实现快速查找,并且还支持数据的快速插入或删除。

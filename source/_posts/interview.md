@@ -17,21 +17,21 @@ tags:
 >解决办法: 可将小数转换成整数计算,如: `(0.1*10+0.2*10)/10` 
 
 ### 手动实现Array.reduce()
->数组先依次传给`a,b` 然后返回值给a,下一个值给b,依次迭代。直到数组结束。
+数组先依次传给`a,b` 然后返回值给a,下一个值给b,依次迭代。直到数组结束。
 ```JS
    let array = [1,2,3,4]
    let sum = array.reduce((a,b)=>a+b)
    console.log(sum)  // 10
 ```
-> 手动实现如下
+ > 手动实现如下
 ```JS
- Array.prototype.MyReduce = function (params) {
-   let _that = this.slice(0) //一位数组深拷贝
-   if (_that.length <= 2) {
-     return params(..._that)
-   } else {
-     return [params(..._that), ..._that.splice(2)].MyReduce(params)
-   }
+let array = [1,2,3,4,5]
+Array.prototype.MyReduce = function (params) {
+  if (this.length <= 2) {
+    return params(...this)
+  } else {
+    return [params(...this), ...this.slice(2)].MyReduce(params)
+  }
 }
 let sum = array.MyReduce((a, b) => a + b)
 console.log(sum) // 15
@@ -76,11 +76,11 @@ console.log(multiply) // 120
    ```
 6.  针对文本可采用`line-height`来实现垂直居中,`text-align:center` 实现水平居中  
 ### 跨域、jsonp原理、CORS原理
-> 跨域是浏览器的安全政策下的一种同源策略,同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。要求访问资源时要 `协议相同`、`域名相同` 、 `端口相同`。
+跨域是浏览器的安全政策下的一种同源策略,同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。要求访问资源时要 `协议相同`、`域名相同` 、 `端口相同`。
 
-> **解决不能跨域请求资源的办法**
-> **JSONP:** JSONP是利用浏览器对script的资源引用没有同源限制，通过动态插入一个script标签，当资源加载到页面后会立即执行的原理实现跨域的。JSONP是一种非正式传输协议，该协议的一个要点就是允许用户传递一个callback或者开始就定义一个回调方法，参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。JSONP只支持GET请求而不支持POST等其它类型的HTTP请求,它只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题，JSONP的优势在于支持老式浏览器，弊端也比较明显：需要客户端和服务端定制进行开发，服务端返回的数据不能是标准的Json数据，而是callback包裹的数据。
->**CORS**:(IE10以下不支持)CORS是现代浏览器支持跨域资源请求的一种方式，全称是"跨域资源共享"（Cross-origin resource sharing），当使用XMLHttpRequest发送请求时，浏览器发现该请求不符合同源策略，会给该请求加一个请求头：Origin，后台进行一系列处理，如果确定接受请求则在返回结果中加入一个响应头：Access-Control-Allow-Origin;浏览器判断该相应头中是否包含Origin的值，如果有则浏览器会处理响应，我们就可以拿到响应数据，如果不包含浏览器直接驳回，这时我们无法拿到响应数据
+**解决不能跨域请求资源的办法**
+**JSONP:** JSONP是利用浏览器对script的资源引用没有同源限制，通过动态插入一个script标签，当资源加载到页面后会立即执行的原理实现跨域的。JSONP是一种非正式传输协议，该协议的一个要点就是允许用户传递一个callback或者开始就定义一个回调方法，参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。JSONP只支持GET请求而不支持POST等其它类型的HTTP请求,它只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题，JSONP的优势在于支持老式浏览器，弊端也比较明显：需要客户端和服务端定制进行开发，服务端返回的数据不能是标准的Json数据，而是callback包裹的数据。<br/>
+**CORS**:(IE10以下不支持)CORS是现代浏览器支持跨域资源请求的一种方式，全称是"跨域资源共享"（Cross-origin resource sharing），当使用XMLHttpRequest发送请求时，浏览器发现该请求不符合同源策略，会给该请求加一个请求头：Origin，后台进行一系列处理，如果确定接受请求则在返回结果中加入一个响应头：Access-Control-Allow-Origin;浏览器判断该相应头中是否包含Origin的值，如果有则浏览器会处理响应，我们就可以拿到响应数据，如果不包含浏览器直接驳回，这时我们无法拿到响应数据
 ```Java
 response.setHeader("Access-Control-Allow-Origin", origin);
 response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE,PATCH");
@@ -227,9 +227,147 @@ response.addHeader("Access-Control-Allow-Credentials", "true");
 > XHR就是 `XMLHttpRequest` 的请求方式
 > FetchApi 类似 `function(){}.then().catch()`的模式，FetchAPI可以流式请求体的模式(下载大文件过程中显示数据流),更方便请求。
 ### 实现一个盒子高度是宽度的一半(纯CSS)
+padding属性, padding 的百分比是根据盒子的宽度来决定的。
+  ```HTML
+   <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .parent {
+      width: 1000px;
+      border: 1px solid red;
+    }
 
-### JS实现DSF
+    .child {
+      height: 0;
+      padding-bottom: 50%;
+      position: relative;
+    }
+
+    .content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: pink;
+    }
+  </style>
+  <div class="parent">
+    <div class="child">
+      <div class="content" />
+    </div>
+  </div>
+  ```
+
 ### 不同浏览器标签页的通信
-### 线程与进程的区别
-### 
 
+### 线程与进程的区别
+**进程具有的特征：**
+  - 动态性：进程是程序的一次执行过程，是临时的，有生命期的，是动态产生，动态- 消亡的；
+  - 并发性：任何进程都可以同其他进行一起并发执行；
+  - 独立性：进程是系统进行资源分配和调度的一个独立单位；
+  - 结构性：进程由程序，数据和进程控制块三部分组成。
+**线程与进程的区别**
+  - 线程是程序执行的最小单位，而进程是操作系统分配资源的最小单位；
+  - 一个进程由一个或多个线程组成，线程是一个进程中代码的不同执行路线；
+  - 进程之间相互独立，但同一进程下的各个线程之间共享程序的内存空间(包括代码段，数据集，堆等)及一些进程级的资源(如打开文件和信号等)，某进程内的线程在其他进程不可见；
+  - 调度和切换：线程上下文切换比进程上下文切换要快得多。
+  
+### 浏览器是如何工作的
+
+### 回流和重绘的区别
+浏览器在加载HTML的时候,会形成DOM树 和render树，DOM树含有HTML标签，包括`dispaly:none`的标签还有JS代码动态添加的元素。浏览器把CSS样式解析成结构体。DOM 树和结构体结合之后生成render树。所以render树每个节点都有自己的样式。render-tree中的元素的规模，尺寸，布局等发生改变时需要重建render树。称为回流。每个页面至少需要页面加载时这一个回流。完成回流之后，浏览器需要重新在屏幕上绘制受影响的部分。该过程称为重绘。
+如果render Tree中的部分元素更新只影响外观(如颜色)不会引起回流，只会发生重绘。<br/>
+**浏览器的优化：**显然回流的花销比重绘要高,回流的花销和 render tree 有多少节点有关。所以浏览器会维护一个队列。把所以会引起回流重绘的操作放入这个队列。当队列中的操作达到一定的数量。或者到了一定时间间隔。浏览器会进行一个批处理，把多次回流重绘变成一次回流重绘。
+**代码的优化：**把多次改变样式代码，多次添加删除元素等操作合并成一次操作。
+>[优质博客链接](http://blog.poetries.top/FE-Interview-Questions/improve/#_7-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98)
+### express和koa的区别
+在koa中,一切流程都是中间件。数据流向遵循洋葱模型。先入后出,也像递归模型。koa2中实现异步是通过async/awaite，koa1实现异步是通过generator/yield，而express实现异步是通过回调函数的方式。express内置了很多中间件。koa2基本没绑定其他框架。更容易定制化。扩展性好。express没有提供上下文机制。数据的控制需要自己手动实现。Koa依据洋葱模型实现数据的流入流出的功能。
+```JS
+const Koa = require('koa')
+const app = new Koa()
+
+const mid1 = async (ctx, next) => {
+    ctx.body =  '前：' + '1\n'
+    await next()
+    ctx.body =   ctx.body + '后：' + '1\n'
+}
+
+const mid2 = async (ctx, next) => {
+    ctx.body =    ctx.body + '前：'+ '2\n'
+    await next()
+    ctx.body =    ctx.body + '后：'+ '2\n'
+}
+
+const mid3 = async (ctx, next) => {
+    ctx.body =  ctx.body + '前：'+  '3\n'
+    await next()
+    ctx.body =   ctx.body + '后：'+ '3\n'
+}
+
+app.use(mid1)
+app.use(mid2)
+app.use(mid3)
+
+app.listen(3000) 
+// 前1 前2 前3
+// 后3 后2 后1
+```
+### koa的洋葱模型(koa中间件原理)
+初始化Koa实例后,用use方法来调用加载中间件。会有一个数组来存储中间件，use的调用顺序。决定了中间件的执行顺序。每一个中间件都是一个函数(如果不是会报错),接收两个参数,第一个ctx是上下文对象，另一个是next函数。项目启动后koa-componse模块对middleware中间件数组进行处理。会从middleware数组中取第一个函数开始执行,中间件函数调用next方法去执行下一个中间件函数(此时不代表当前中间件函数执行完毕了)，每个中间件函数执行完毕之后都会反回Promise对象。
+
+![洋葱模型图片](http://blogqiniu.wangminwei.top/202002132134_542.png?/)
+
+### mysql索引太多会有什么影响,索引种类
+
+### left join查询和inner join 查询有什么区别
+
+### 实现一个sum函数使得`sum(1,2,3).valueOf()`和`sum(1)(2)(3).valueOf()`执行输出的结果都等于6
+```JS
+function sum(a, ...args) {
+  return function (b = args[0]) {
+    return function (c = args[1]) {
+      return a + b + c
+    }
+  }
+}
+console.log(sum(1)(2)(3).valueOf()) //6 
+console.log(sum(1, 2, 3).valueOf()()()) //6
+function sum2(...args) {
+  if (args.length == 1) {
+    return function (b) {
+      return function (c) {
+        return args[0] + b + c
+      }
+    }
+  } else {
+    return args.reduce((a, b) => a + b)
+  }
+}
+console.log(sum2(1)(2)(3).valueOf()) //6
+console.log(sum2(1, 2, 3).valueOf()) // 6
+
+```
+
+### 什么是SEO 
+搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名。目的是：为网站提供生态式的自我营销解决方案，让其在行业内占据领先地位，获得品牌收益；SEO包含站外SEO和站内SEO两方面；为了从搜索引擎中获得更多的免费流量，从网站结构、内容建设方案、用户互动传播、页面等角度进行合理规划，还会使搜索引擎中显示的网站相关信息对用户来说更具有吸引力。
+**搜索引擎优化：**
+  - 对网站的标题、关键字、描述精心设置，反映网站的定位，让搜索引擎明白网站是做什么的
+  - 网站内容优化：内容与关键字的对应，增加关键字的密度；
+  - 在网站上合理设置Robot.txt文件；
+**网页内部优化：**
+  - META标签优化：例如：TITLE，KEYWORDS，DESCRIPTION等的优化；
+  - title：只要强调重点即可，重要关键词出现不要超过2次，而且要靠前，每个页面的title要有所不同。
+  - description：把网页内容高度概括到这里，长度要合理，不可过分堆砌关键词，每个页面的description要有所不同。
+
+- keywords：列举几个重要的关键词即可，不可过分堆砌。
+>[转载自简书](https://www.jianshu.com/p/77d32ca7cb9d)
+
+### 实现BFS算法(广度优先遍历)
+
+### 实现观察者模式(发布订阅模式)
+### 总结
+> 数据结构与算法，项目经验，设计模式，底层知识，SQL语法
+>
