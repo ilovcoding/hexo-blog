@@ -99,11 +99,95 @@ response.addHeader("Access-Control-Allow-Credentials", "true");
 > `transition` ,只是一个过渡 只能设置 ,样式初始值和结束值,包括一些简单的控制样式过渡的属性
 > `animation` 不改变元素的属性。动画结束后还原。有很多动画api,基本可以控制每一帧动画。例如可以控制 动画间隔，以及动画次数,甚至可以控制反向播放
 
+### 介绍一下Promise以及内部的实现。
+>Promise是为了解决Javascript回调嵌套过多而产生的。因为支持链式调用，而且书写更加方便，并纳入了ES2015规范中 
+#### Promise/A+规范
+- pendding 表示初始状态,可以转移到 `fullfilled` 或者 `rejected` 状态。
+- `fullfilled` 表示操作成功，状态不可转移。
+- `rejected` 表示操作失败，状态不可转移。
+- 必须有一个 `then` 异步执行方法，`then` 接收两个参数且必须返回一个 `promise`。
+  
+![MDN上Promise状态图](http://blogqiniu.wangminwei.top/202002161328_665.png?/)
+
+#### 自己实现思路
+从上面描述可知，要实现Promise需要有
+- status 当前的状态(`pending|fullfilled|rejected`)
+- value `fullfilled`之后的返回值。
+- reason `rejected`之后的原因
+- fullfilledCallback `fillfulled`回调队列
+- rejectedCallback `rejected` 回调队列
+```JS
+// 先实现一个简单版本的 以后再实现复杂的。
+const Pending = 'pending'
+const Fullfilled = 'fullfilled'
+const Rejected = 'rejected'
+
+function MyPromise(executor) {
+  let self = this
+  self.status = Pending
+  self.value = null
+  self.reason = null
+  /**
+   * 定义resolve 函数接收成功时候的返回值
+   */
+  function resolve(value) {
+    if (self.status === Pending) {
+      self.status = Fullfilled
+      self.value = value
+    }
+  }
+  /**
+   * 定义 reject函数 接收失败的时候的原因
+   */
+  function reject(reason) {
+    if (self.status === Pending) {
+      self.status = Rejected
+      self.reason = reason
+    }
+  }
+  try {
+    // 把传入 resolve和reject函数
+    executor(resolve, reject)
+  } catch (e) {
+    reject(e)
+  }
+}
+
+/**
+ * 实现then 方法 分别接收处理不同状态的函数
+ */
+MyPromise.prototype.then = function (onFullfilled, OnRejected) {
+  if (this.status === Fullfilled) {
+    onFullfilled(this.value)
+  }
+  if (this.status === OnRejected) {
+    OnRejected(this.reason)
+  }
+  if (this.status === Pending) {
+    return undefined
+  }
+  // 返回Promise 对象
+  return this
+}
+// 实例化自定义Promise 传入函数执行器
+let myPromise = new MyPromise(function (resolve, reject) { resolve("Hello world哈哈哈") })
+myPromise.then((res) => {
+  console.log(res) // Hello World 哈哈哈
+}).then((res) => {
+  console.log(res) // Hello World 哈哈哈
+})
+
+```
+>[实现Promise链接I](https://github.com/frontend9/fe9-interview/issues/14)
+>[实现Promise链接II](https://www.jianshu.com/p/b4f0425b22a1)
+
+
 ### JS实现异步有哪些方法
 > Javascript 的执行环境是单线程。就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
 > **同步模式(Synchronous)：**程序的执行顺序与任务的排列顺序是一致的、同步的。
 > **异步模式(Asynchronous)：**每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。
 - 回调函数的形式
+  
   把耗时的模块。放入定时器中。将其子模块,已回调函数的形式写入。[阮老师博客](http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html)
   ```JS
     // 假设f1是耗时的操作，f2需要f1的结果。 
@@ -175,7 +259,7 @@ response.addHeader("Access-Control-Allow-Credentials", "true");
   observe(print2)
   person.name = '李四'; 
   ```
-- Promises 对象
+- Promise 对象
   它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：`f1.().then(f2)`
   这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚。
   ```JS
@@ -193,7 +277,13 @@ response.addHeader("Access-Control-Allow-Credentials", "true");
   // 执行结果 1 2 5 3 4
   ```
 ### Symbol用法
-> ES6 引入了一种新的原始数据类型`Symbol`，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）
+ 最新的ECMAScript 标准定义了8种数据类型,7种原始类型 `undefined` `null` `bollean` `number` `bigint` `string` `symbol` ,1种复杂数据类`object` 。<br/>
+如果面试官问，你可以反问一句，是基础数据类型，还是数据类型，基础数据类型7种，数据类型8种<br/>
+
+![](http://blogqiniu.wangminwei.top/202002212036_7.png?/)
+
+**primitive的解释：** In JavaScript, a primitive (primitive value, primitive data type) is data that is not an object and has no methods. There are 7 primitive data types: string, number, bigint, boolean, null, undefined, and symbol.
+
 ```JS
   let s1 = Symbol('info')
   let a = {
@@ -368,6 +458,238 @@ console.log(sum2(1, 2, 3).valueOf()) // 6
 ### 实现BFS算法(广度优先遍历)
 
 ### 实现观察者模式(发布订阅模式)
+### 手动实现Proxy
+
+```JS
+function clone(obj) {
+  if (Object.prototype.toString.call(obj) !== '[object Object]' || obj == null) return obj;
+  let newObj = new Object();
+  for (let key in obj) {
+    newObj[key] = clone(obj[key]);
+  }
+  return newObj;
+}
+
+//深度克隆当前对象
+//遍历当前对象所有属性
+function MyProxy(target, handle) {
+  let targetCopy = clone(target);
+
+  Object.keys(target).forEach(function (key) {
+    //Object.defineProperty 修改每一项的get set 方法 
+    Object.defineProperty(targetCopy, key, {
+      get: function () {
+        return handle.get && handle.get(target, key);
+      },
+      set: function (newVal) {
+        handle.set && handle.set(target, key, newVal);
+      }
+    });
+  });
+  return targetCopy;
+}
+
+let myProxy = new MyProxy({ name: "wmw", son: { sonName: "sonName" } }, {
+  set: function () { console.log("set方法被拦截") },
+  get: function () {
+    console.log('get方法被拦截')
+  }
+})
+myProxy.name = 'xxx'
+myProxy.year = "2020"
+```
+>[源码](https://github.com/wmwgithub/typescript-design-mode/blob/master/src/proxy/proxy.js)
+
+
+### Proxy 实现Vue数据双向绑定
+```html
+<body>
+  <div id="root"></div>
+</body>
+<script>
+
+  let data = {
+    name: 'wmw',
+    age: 21
+  }
+  let el = document.getElementById('root')
+  let template = `
+    <div  >
+    姓名：{{name}}
+    <br/>
+    年龄：{{age}}
+    <br />
+    <input type="text" v-model="name"  id='input1'>
+    </div>
+  `
+  function renderHTML() {
+    let res = template.replace(/\{\{\w+\}\}/g, key => {
+      key = key.slice(2, key.length - 2)
+      return data[key]
+    })
+    el.innerHTML = res
+  }
+  renderHTML()
+  function renderJS() {
+    Array.from(el.getElementsByTagName('input'))
+      .filter(ele => ele.getAttribute('v-model'))
+      .forEach(input => {
+        let key = input.getAttribute('v-model')
+        input.value = data[key]
+        input.onfocus = true
+        input.oninput = function () {
+          dataProxy[key] = this.value
+        }
+      })
+  }
+  renderJS()
+  let dataProxy = new Proxy(data, {
+    set(obj, name, value) {
+      // diff算法
+      obj[name] = value
+      renderHTML()
+      renderJS()
+    }
+  }) 
+</script>
+```
+>[源码](https://github.com/wmwgithub/typescript-design-mode/blob/master/src/proxy/vue/index.html)
+
+### 单例模式/工厂模式
+```JS
+let Person = (function () {
+  let instance = null
+  return class Person {
+    constructor() {
+      if (!instance) {
+        instance = this
+      } else {
+        return instance
+      }
+    }
+  }
+})()
+
+let p1 = new Person()
+let p2 = new Person()
+console.log(p1 == p2)
+```
+```JS
+let Factory = (function () {
+  let s = {
+    Student(name, age) {
+      this.name = name
+      this.age = age
+      return this
+    },
+    Teacher(name, age) {
+      this.name = name
+      this.age = age
+      return this
+    }
+  }
+
+
+  return class {
+    constructor(type, name, age) {
+      if (s[type]) {
+        return s[type].call(this, name, age)
+      }
+    }
+  }
+})()
+
+let stu = new Factory("Student", '张三', 18)
+console.log(stu.name, stu.age) // 张三 18
+```
+
+### JS函数柯里化
+> Curry 把接受多个参数的函数，变成了接受一个单一参数(最初参数的第一个),并返回能正确运行的函数。
+```JS
+function add(x,y){
+  return x+y
+}
+function curryingAdd(x){
+  return function (y){
+    return x+y
+  }
+}
+add(1,2)
+curryingAdd(1)(2)
+```
+
+- 让参数能够复用，调用起来也更方便。
+```JS
+function check(reg,text){
+  return reg.text(text)
+}
+check(/\d+/g,'test') // false
+check(/[a-z]+/g,'test') //true
+// Currying 后
+function curryingCheck(reg){
+  return function(txt){
+    return reg.test(txt)
+  }
+}
+var hasNumber = curryingCheck(/\d+/g)
+var hasLetter = curryingCheck(/[a-z]+/g)
+
+hasNumber('test1') // true
+hasNumber('testtest') // false
+hasLetter('21212') // false
+```
+- 提前确认
+```JS
+var on = function(element, event, handler) {
+    if (document.addEventListener) {
+        if (element && event && handler) {
+            element.addEventListener(event, handler, false);
+        }
+    } else {
+        if (element && event && handler) {
+            element.attachEvent('on' + event, handler);
+        }
+    }
+}
+
+var on = (function() {
+    if (document.addEventListener) {
+        return function(element, event, handler) {
+            if (element && event && handler) {
+                element.addEventListener(event, handler, false);
+            }
+        };
+    } else {
+        return function(element, event, handler) {
+            if (element && event && handler) {
+                element.attachEvent('on' + event, handler);
+            }
+        };
+    }
+})();
+
+//换一种写法可能比较好理解一点，上面就是把isSupport这个参数给先确定下来了
+var on = function(isSupport, element, event, handler) {
+    isSupport = isSupport || document.addEventListener;
+    if (isSupport) {
+        return element.addEventListener(event, handler, false);
+    } else {
+        return element.attachEvent('on' + event, handler);
+    }
+}
+```
+- 延迟运行
+```JS
+Function.prototype.bind = function (context) {
+    var _this = this
+    var args = Array.prototype.slice.call(arguments, 1)
+ 
+    return function() {
+        return _this.apply(context, args)
+    }
+}
+```
+
 ### 总结
 > 数据结构与算法，项目经验，设计模式，底层知识，SQL语法
 >
