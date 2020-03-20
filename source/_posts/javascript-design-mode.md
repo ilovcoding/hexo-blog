@@ -1,7 +1,8 @@
 ---
-title: JavaScript设计模式(零)-前置知识
+title: 设计模式(零)
 date: 2019-09-16 13:39:25
-tags:  JavaScript设计模式
+tags:  
+  - 设计模式
 
 ---
 

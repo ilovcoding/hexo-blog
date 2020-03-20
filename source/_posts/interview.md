@@ -116,71 +116,181 @@ response.addHeader("Access-Control-Allow-Credentials", "true");
 - reason `rejected`之后的原因
 - fullfilledCallback `fillfulled`回调队列
 - rejectedCallback `rejected` 回调队列
-```JS
-// 先实现一个简单版本的 以后再实现复杂的。
-const Pending = 'pending'
-const Fullfilled = 'fullfilled'
-const Rejected = 'rejected'
 
-function MyPromise(executor) {
+**简单版本**
+> 这个代码来源 github 面试写出这个已经够了，下面那个复杂版本，我自己写着玩的。
+```JS
+const PENDING = 'pending'
+const RESOLVED = 'resolved'
+const REJECTED = 'rejected'
+function MyPromise(exec) {
   let self = this
-  self.status = Pending
-  self.value = null
-  self.reason = null
-  /**
-   * 定义resolve 函数接收成功时候的返回值
-   */
+  this.state = PENDING
+  this.value = null
+  this.resolvedCallBacks = []
+  this.rejectedCallBacks = []
   function resolve(value) {
-    if (self.status === Pending) {
-      self.status = Fullfilled
-      self.value = value
+    if (value instanceof MyPromise) {
+      return value.then(resolve, reject)
     }
+    setTimeout(() => {
+      if (self.state === PENDING) {
+        self.state = RESOLVED
+        self.value = value
+        self.resolvedCallBacks.forEach(callback => {
+          callback(value)
+        })
+      }
+    })
   }
-  /**
-   * 定义 reject函数 接收失败的时候的原因
-   */
+
+
   function reject(reason) {
-    if (self.status === Pending) {
-      self.status = Rejected
-      self.reason = reason
-    }
+    setTimeout(() => {
+      if (self.state === PENDING) {
+        self.state = REJECTED
+        self.value = reason
+        self.rejectedCallBacks.forEach(callback => {
+          callback(value)
+        })
+      }
+    })
   }
   try {
-    // 把传入 resolve和reject函数
-    executor(resolve, reject)
+    exec(resolve, reject)
   } catch (e) {
     reject(e)
   }
 }
+MyPromise.prototype.then = function (onResolved, onRejected) {
+  onResolved = typeof onResolved === 'function' ? onResolved : function (value) {
+    return value
+  }
+  onRejected = typeof onRejected === 'function' ? onRejected : function (reason) {
+    throw reason
+  }
 
-/**
- * 实现then 方法 分别接收处理不同状态的函数
- */
-MyPromise.prototype.then = function (onFullfilled, OnRejected) {
-  if (this.status === Fullfilled) {
-    onFullfilled(this.value)
+  if (this.state === PENDING) {
+    this.resolvedCallBacks.push(onResolved)
+    this.rejectedCallBacks.push(onRejected)
   }
-  if (this.status === OnRejected) {
-    OnRejected(this.reason)
+  if (this.state === RESOLVED) {
+    onResolved(this.value)
   }
-  if (this.status === Pending) {
-    return undefined
+  if (this.state === REJECTED) {
+    onRejected(this.value)
   }
-  // 返回Promise 对象
-  return this
 }
-// 实例化自定义Promise 传入函数执行器
-let myPromise = new MyPromise(function (resolve, reject) { resolve("Hello world哈哈哈") })
-myPromise.then((res) => {
-  console.log(res) // Hello World 哈哈哈
-}).then((res) => {
-  console.log(res) // Hello World 哈哈哈
-})
-
 ```
->[实现Promise链接I](https://github.com/frontend9/fe9-interview/issues/14)
->[实现Promise链接II](https://www.jianshu.com/p/b4f0425b22a1)
+**复杂版本** 
+```js
+  const PENDING = 'pendiing'
+  const RESOLVED = 'resolved'
+  const REJECTED = 'rejected'
+  /**
+   * @param {Function} excutor 同步执行器函数 
+   */
+  function MyPromise(excutor) {
+    this.status = PENDING
+    this.data = undefined
+    this.callbacks = []
+    let _self = this
+    function resolve(value) {
+      // 状态 改成 resolve
+      // 报错value 数据
+      // 执行回调函数
+      if (_self.status !== PENDING) {
+        return
+      }
+      _self.status = RESOLVED
+      _self.data = value
+      if (_self.callbacks.length > 0) {
+        setTimeout(() => {
+          _self.callbacks.forEach(callbacksObj => {
+            callbacksObj.onResolved(value)
+          })
+        })
+      }
 
+    }
+    function reject(reason) {
+      if (_self.status !== PENDING) {
+        return
+      }
+      _self.status = REJECTED
+      _self.data = reason
+      if (_self.callbacks.length > 0) {
+        setTimeout(() => {
+          _self.callbacks.forEach(callbacksObj => {
+            callbacksObj.onRejected(value)
+          })
+        })
+      }
+    }
+    // 如果执行器 抛出异常 promise 变成 reject状态
+    try {
+      excutor(resolve, reject)
+    } catch (error) {
+      reject(error)
+    }
+  }
+
+  /**
+   * Promise 实例对象 then
+   *  @param {Function} onResolved 成功状态对的回调函数
+   *  @param {Function} onRejected 失败状态的回调函数
+   *  @return 一个新的promise对象 
+   */
+  MyPromise.prototype.then = function (onResolved, onRejected) {
+    const _self = this
+    // 实现异常传递
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason }
+    onResolved = typeof onResolved === 'function' ? onResolved : value => value
+
+    // 返回一个新的Promise对象
+    return new MyPromise((resolve, reject) => {
+      /**
+       * @param {} callback 调用指定的回调函数 
+       */
+      function handle(callback) {
+        try {
+          const result = callback(_self.data)
+          if (result instanceof MyPromise) {
+            result.then(resolve, reject)
+          } else {
+            resolve(result)
+          }
+        } catch (error) {
+          reject(error)
+        }
+      }
+
+      if (_self.status === PENDING) {
+        _self.callbacks.push({
+          onResolved,
+          onRejected
+        })
+      } else if (_self.status === RESOLVED) {
+
+        setTimeout(() => {
+          handle(onResolved)
+        })
+      } else {
+        setTimeout(() => {
+          handle(onRejected)
+        })
+      }
+    })
+  }
+  /**
+ * Promise 实例对象 catch
+ *  @param {Function} onRejected 失败状态的回调函数
+ *  @return 一个新的promise对象 
+ */
+  MyPromise.prototype.catch = function (onRejected) {
+    return this.then(null, onRejected)
+  }
+```
 
 ### JS实现异步有哪些方法
 > Javascript 的执行环境是单线程。就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
@@ -412,34 +522,19 @@ app.listen(3000)
 
 ### mysql索引太多会有什么影响,索引种类
 
-### left join查询和inner join 查询有什么区别
+(1) 空间：索引需要占用空间；
 
-### 实现一个sum函数使得`sum(1,2,3).valueOf()`和`sum(1)(2)(3).valueOf()`执行输出的结果都等于6
-```JS
-function sum(a, ...args) {
-  return function (b = args[0]) {
-    return function (c = args[1]) {
-      return a + b + c
-    }
-  }
-}
-console.log(sum(1)(2)(3).valueOf()) //6 
-console.log(sum(1, 2, 3).valueOf()()()) //6
-function sum2(...args) {
-  if (args.length == 1) {
-    return function (b) {
-      return function (c) {
-        return args[0] + b + c
-      }
-    }
-  } else {
-    return args.reduce((a, b) => a + b)
-  }
-}
-console.log(sum2(1)(2)(3).valueOf()) //6
-console.log(sum2(1, 2, 3).valueOf()) // 6
+(2) 时间：查询索引需要时间；
 
-```
+(3) 维护：索引须要维护（数据变更时）；
+
+不建议使用索引的情况：
+
+(1) 数据量很小的表
+
+(2) 空间紧张有什么区别
+
+
 
 ### 什么是SEO 
 搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名。目的是：为网站提供生态式的自我营销解决方案，让其在行业内占据领先地位，获得品牌收益；SEO包含站外SEO和站内SEO两方面；为了从搜索引擎中获得更多的免费流量，从网站结构、内容建设方案、用户互动传播、页面等角度进行合理规划，还会使搜索引擎中显示的网站相关信息对用户来说更具有吸引力。
@@ -462,7 +557,7 @@ console.log(sum2(1, 2, 3).valueOf()) // 6
 
 ```JS
 function clone(obj) {
-  if (Object.prototype.toString.call(obj) !== '[object Object]' || obj == null) return obj;
+  if (Object.prototype.toString.call(obj) !== '[object Object]') return obj;
   let newObj = new Object();
   for (let key in obj) {
     newObj[key] = clone(obj[key]);
@@ -589,7 +684,6 @@ let Factory = (function () {
     }
   }
 
-
   return class {
     constructor(type, name, age) {
       if (s[type]) {
@@ -638,58 +732,132 @@ hasNumber('test1') // true
 hasNumber('testtest') // false
 hasLetter('21212') // false
 ```
-- 提前确认
+- 通用的柯理化函数  
 ```JS
-var on = function(element, event, handler) {
-    if (document.addEventListener) {
-        if (element && event && handler) {
-            element.addEventListener(event, handler, false);
-        }
-    } else {
-        if (element && event && handler) {
-            element.attachEvent('on' + event, handler);
-        }
+/**
+ * @param fn    待柯里化的原函数
+ * @param len   所需的参数个数，默认为原函数的形参个数
+ */
+function curry(fn,len = fn.length) {
+    return _curry.call(this,fn,len)
+}
+
+/**
+ * @param fn    待柯里化的原函数
+ * @param len   所需的参数个数
+ * @param args  已接收的参数列表
+ */
+function _curry(fn,len,...args1) {
+    return function (...args2) {
+      let _args = [...args1,...args2];
+      if(_args.length >= len){
+          return fn.apply(this,_args);
+      }else{
+          // 继续收集参数的过程
+          return _curry.call(this,fn,len,..._args)
+      }
     }
 }
 
-var on = (function() {
-    if (document.addEventListener) {
-        return function(element, event, handler) {
-            if (element && event && handler) {
-                element.addEventListener(event, handler, false);
-            }
-        };
-    } else {
-        return function(element, event, handler) {
-            if (element && event && handler) {
-                element.attachEvent('on' + event, handler);
-            }
-        };
-    }
-})();
-
-//换一种写法可能比较好理解一点，上面就是把isSupport这个参数给先确定下来了
-var on = function(isSupport, element, event, handler) {
-    isSupport = isSupport || document.addEventListener;
-    if (isSupport) {
-        return element.addEventListener(event, handler, false);
-    } else {
-        return element.attachEvent('on' + event, handler);
-    }
-}
 ```
-- 延迟运行
+### 实现一个sum函数使得`sum(1,2,3).valueOf()`和`sum(1)(2)(3).valueOf()`执行输出的结果都等于6
 ```JS
-Function.prototype.bind = function (context) {
-    var _this = this
-    var args = Array.prototype.slice.call(arguments, 1)
- 
+function sum(a, ...args) {
+  return function (b = args[0]) {
+    return function (c = args[1]) {
+      return a + b + c
+    }
+  }
+}
+console.log(sum(1)(2)(3).valueOf()) //6 
+console.log(sum(1, 2, 3).valueOf()()()) //6
+function sum2(...args) {
+  if (args.length == 1) {
+    return function (b) {
+      return function (c) {
+        return args[0] + b + c
+      }
+    }
+  } else {
+    return args.reduce((a, b) => a + b)
+  }
+}
+console.log(sum2(1)(2)(3).valueOf()) //6
+console.log(sum2(1, 2, 3).valueOf()) // 6
+
+```
+
+### 手动实现对象深拷贝的方法
+> 面试我只想用ES5 的写法  
+```js
+// ES6的写法
+function merge(source) {
+  let obj = new Object()
+  for (const key of Reflect.ownKeys(source)) {
+    // Reflect.getOwnPropertyDescriptor(source,key)
+    //  获取对象的属性描述符  对象是否可写 等
+    Reflect.defineProperty(obj, key, Reflect.getOwnPropertyDescriptor(source, key))
+    if (Reflect.apply(Object.prototype.toString, source[key], []) === '[object Object]') {
+      Reflect.set(obj, key, merge(source[key]))
+    }
+  }
+  return obj
+}
+// ES5 的写法
+function clone(obj) {
+  if (Object.prototype.toString.call(obj) !== '[object Object]') return obj;
+  let newObj = new Object();
+  for (let key in obj) {
+    newObj[key] = clone(obj[key]);
+  }
+  return newObj;
+}
+
+```
+### 防抖节流
+- 防抖
+```js
+function debounce(fn, wait) {
+    var timeout = null;
     return function() {
-        return _this.apply(context, args)
+        if(timeout !== null){
+          clearTimeout(timeout);
+        } 
+        timeout = setTimeout(fn, wait);
     }
 }
+// 处理函数
+function handle() {
+    console.log(Math.random()); 
+}
+// 滚动事件
+window.addEventListener('scroll', debounce(handle, 1000));
 ```
-
+- 节流
+```js
+var throttle = function(func, delay) {
+ var timer = null;
+ var startTime = Date.now();
+ return function() {
+     var curTime = Date.now();
+     var remaining = delay - (curTime - startTime);
+     var context = this;
+     var args = arguments;
+     clearTimeout(timer);
+      if (remaining <= 0) {
+        func.apply(context, args);
+        startTime = Date.now();
+      } else {
+        // 定时器解决，节流函数，最后一次需要被执行的问题
+        timer = setTimeout(func, remaining);
+      }
+  }
+}
+function handle() {
+  console.log(Math.random());
+}
+window.addEventListener('scroll', throttle(handle, 1000));
+```
 ### 总结
-> 数据结构与算法，项目经验，设计模式，底层知识，SQL语法
+>面试需要 数据结构与算法，网络原理，底层知识，项目经验，设计模式，SQL语法
 >
