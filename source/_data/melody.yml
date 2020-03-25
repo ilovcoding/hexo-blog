@@ -51,6 +51,7 @@ highlight_theme: default
 # ---------------
 social:
   github fab: https://github.com/wmwgithub
+  rss    fas: https://juejin.im/user/5a5adab06fb9a01cc026344c
 #icon_name fab: url
 # Algolia search
 # ---------------
@@ -87,12 +88,12 @@ fireworks: true
 
 # Analysis
 # ---------------
-baidu_analytics: 64ba0ae72cc35f37b1cf6e8b4e6262be
+# baidu_analytics: 64ba0ae72cc35f37b1cf6e8b4e6262be
 
 google_analytics:
 
 # Tencent_analytics ID
-tencent_analytics:
+tencent_analytics: 66535930
 
 # stylesheets loaded in the <head>
 # ---------------
@@ -114,8 +115,8 @@ scripts:
   # ---------------
 cdn:
   css:
-    # fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
-    fontawesomeV5: https://use.fontawesome.com/releases/v5.3.1/css/all.css
+    fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
+    fontawesomeV5: https://use.fontawesome.com/releases/v5.7.2/css/all.css
   js:
     anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
     jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
@@ -259,8 +260,8 @@ busuanzi:
 links_title: 友情链接
 links:
   Dzou's Blog: https://www.dzou.top
-  Boyn: https://boyn.top 
-
+  Boyn: http://boyn.top 
+  ParaK: http://www.parak.top/
 # Follow Me Button
 follow:
   enable: true
