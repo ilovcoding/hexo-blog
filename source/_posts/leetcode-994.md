@@ -6,7 +6,7 @@ tags:
   - LeetCode
 ---
 ### 题目描述
-![图片来源LeetCode](http://blogqiniu.wangminwei.top/202003040932_499.png?/)
+![图片来源LeetCode](http://blogimage.lemonlife.top/202003040932_499.png?/)
 ```
 在给定的网格中，每个单元格可以有以下三个值之一：
 

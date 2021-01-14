@@ -21,11 +21,11 @@ tags:  算法与数据结构
 
 #### 		算法分类
 
-![](http://blogqiniu.wangminwei.top/201909181100_29.jpg?/)
+![](http://blogimage.lemonlife.top/201909181100_29.jpg?/)
 
 #### 		算法总结
 
-![](http://blogqiniu.wangminwei.top/201909181101_243.jpg?/)
+![](http://blogimage.lemonlife.top/201909181101_243.jpg?/)
 
 ### 3、冒泡排序
 
@@ -45,7 +45,7 @@ tags:  算法与数据结构
 
 #### 		（3）动图演示
 
-![](http://blogqiniu.wangminwei.top/201909181101_1.jpg?/)
+![](http://blogimage.lemonlife.top/201909181101_1.jpg?/)
 
 #### 		（4）代码演示
 
@@ -92,7 +92,7 @@ public static void bubbleSort(int array[]) {
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181102_996.jpg?/)
+![](http://blogimage.lemonlife.top/201909181102_996.jpg?/)
 
 #### （4）代码演示
 
@@ -151,7 +151,7 @@ public static void selectionSort(int[] array) {
 
 #### （3）动态图演示
 
-![插入排序](http://blogqiniu.wangminwei.top/201909181102_303.jpg?/)
+![插入排序](http://blogimage.lemonlife.top/201909181102_303.jpg?/)
 
 #### （4）代码演示
 
@@ -204,7 +204,7 @@ JavaScript代码实现
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181103_140.jpg?/)
+![](http://blogimage.lemonlife.top/201909181103_140.jpg?/)
 
 #### （4）代码演示
 
@@ -249,7 +249,7 @@ JavaScript代码实现
 
 #### 	（3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181103_889.jpg?/)
+![](http://blogimage.lemonlife.top/201909181103_889.jpg?/)
 
 #### 	（4）代码演示
 **Java**  实现
@@ -357,7 +357,7 @@ function quickSort(arr: any[], left: number, right: number) {
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181103_203.jpg?/)
+![](http://blogimage.lemonlife.top/201909181103_203.jpg?/)
 
 #### （4）代码演示
 
@@ -443,7 +443,7 @@ JavaScript 实现希尔排序的移位模式
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181104_130.jpg?/)
+![](http://blogimage.lemonlife.top/201909181104_130.jpg?/)
 
 #### （4）代码演示
 
@@ -522,7 +522,7 @@ JavaScript 实现希尔排序的移位模式
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181104_316.jpg?/)
+![](http://blogimage.lemonlife.top/201909181104_316.jpg?/)
 
 #### （4）代码演示
 
@@ -585,7 +585,7 @@ JavaScript 实现希尔排序的移位模式
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181104_775.jpg?/)
+![](http://blogimage.lemonlife.top/201909181104_775.jpg?/)
 
 #### （4）代码演示
 
@@ -673,7 +673,7 @@ JavaScript 实现希尔排序的移位模式
 
 #### （3）动态图演示
 
-![](http://blogqiniu.wangminwei.top/201909181105_568.jpg?/)
+![](http://blogimage.lemonlife.top/201909181105_568.jpg?/)
 
 #### （4）代码演示
 

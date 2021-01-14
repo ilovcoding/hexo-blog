@@ -30,7 +30,7 @@ Flutter框架采用Dart语言为开发语言，Dart入门不难,JavaScript(接�
 
 - Flutter 目录结构说明  
 
-  ![](http://blogqiniu.wangminwei.top/201910180132_872.png?/)
+  ![](http://blogimage.lemonlife.top/201910180132_872.png?/)
 
   1. 打包时候要用的包，包括修改应用名、图标、加密打包、之类的`android ` `ios` 
 

@@ -17,7 +17,7 @@ cd test
 npm install
 hexo server
 ```
-![安装Hexo](http://blogqiniu.wangminwei.top/201910301359_423.png)
+![安装Hexo](http://blogimage.lemonlife.top/201910301359_423.png)
 ## 安装主题
 > 我选择的是melody个人觉得这款主题真的很好看用起来也很方便。[主题GitHub地址](https://github.com/Molunerfinn/hexo-theme-melody/tree/fca917dd321bcda46b2a7dcddcf18cbe408cff18)
 
@@ -27,11 +27,11 @@ hexo server
 git clone -b master https://github.com/Molunerfinn/hexo-theme-melody themes/melody
 npm install hexo-renderer-jade hexo-renderer-stylus --save
 ```
-![安装主题](http://blogqiniu.wangminwei.top/201910302300_80.png?/)
+![安装主题](http://blogimage.lemonlife.top/201910302300_80.png?/)
 - 修改配置文件，使用先安装的主题
 
 修改test文件夹里面的`_config.yml`的文件的`theme landspcape`改成`theme melody`然后运行`hexo server`启动项目
-![修改配置文件](http://blogqiniu.wangminwei.top/201910302301_62.png?/)
+![修改配置文件](http://blogimage.lemonlife.top/201910302301_62.png?/)
 ## 创建新帖子
 
 ``` 

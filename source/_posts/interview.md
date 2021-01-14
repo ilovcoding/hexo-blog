@@ -107,7 +107,7 @@ response.addHeader("Access-Control-Allow-Credentials", "true");
 - `rejected` 表示操作失败，状态不可转移。
 - 必须有一个 `then` 异步执行方法，`then` 接收两个参数且必须返回一个 `promise`。
   
-![MDN上Promise状态图](http://blogqiniu.wangminwei.top/202002161328_665.png?/)
+![MDN上Promise状态图](http://blogimage.lemonlife.top/202002161328_665.png?/)
 
 #### 自己实现思路
 从上面描述可知，要实现Promise需要有
@@ -390,7 +390,7 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
  最新的ECMAScript 标准定义了8种数据类型,7种原始类型 `undefined` `null` `bollean` `number` `bigint` `string` `symbol` ,1种复杂数据类`object` 。<br/>
 如果面试官问，你可以反问一句，是基础数据类型，还是数据类型，基础数据类型7种，数据类型8种<br/>
 
-![](http://blogqiniu.wangminwei.top/202002212036_7.png?/)
+![](http://blogimage.lemonlife.top/202002212036_7.png?/)
 
 **primitive的解释：** In JavaScript, a primitive (primitive value, primitive data type) is data that is not an object and has no methods. There are 7 primitive data types: string, number, bigint, boolean, null, undefined, and symbol.
 
@@ -518,7 +518,7 @@ app.listen(3000)
 ### koa的洋葱模型(koa中间件原理)
 初始化Koa实例后,用use方法来调用加载中间件。会有一个数组来存储中间件，use的调用顺序。决定了中间件的执行顺序。每一个中间件都是一个函数(如果不是会报错),接收两个参数,第一个ctx是上下文对象，另一个是next函数。项目启动后koa-componse模块对middleware中间件数组进行处理。会从middleware数组中取第一个函数开始执行,中间件函数调用next方法去执行下一个中间件函数(此时不代表当前中间件函数执行完毕了)，每个中间件函数执行完毕之后都会反回Promise对象。
 
-![洋葱模型图片](http://blogqiniu.wangminwei.top/202002132134_542.png?/)
+![洋葱模型图片](http://blogimage.lemonlife.top/202002132134_542.png?/)
 
 ### mysql索引太多会有什么影响,索引种类
 

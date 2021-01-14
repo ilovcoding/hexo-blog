@@ -7,7 +7,7 @@ tags:
 ### 消息队列和事件循环
 要知道浏览器中的JavaScript是如何运行的，首先需要了解的是浏览器的渲染进程到底是如何工作的。首先渲染进程的主线程肯定是运行了JavaScript代码。然后因为渲染进程要和其他的进程（如网络进程和浏览器进程等）进行一些通信，必定会有一条IO线程，来和外界发生数据交换。同样在渲染进程内部有IO线程和渲染主线程之间的通讯，必然是基于消息队列机制的。方便浏览器主线程读取，和IO线程存放事件。
 
-![渲染进程内部结构](http://blogqiniu.wangminwei.top/202003261644_747.png?/)
+![渲染进程内部结构](http://blogimage.lemonlife.top/202003261644_747.png?/)
 
 除了图中的一些事件，消息队列中还包含了很多与页面相关的事件，如 JavaScript 执行、解析 DOM、样式计算、布局计算、CSS 动画等。
 
@@ -50,7 +50,7 @@ test()
 4. 执行微任务队列中的代码，输出 `执行Promise`
 5. 这时候浏览器出现了空闲期，开始执行宏任务，发现有定时器到时间了，执行定时器，`输出0秒定时器`
 
-![微任务的执行过程](http://blogqiniu.wangminwei.top/202003271955_472.png?/)
+![微任务的执行过程](http://blogimage.lemonlife.top/202003271955_472.png?/)
 
 ### JavaScript宏任务的应用
 > setTimeout
@@ -91,7 +91,7 @@ var timerID = setTimeout(showName,2147483648);// 会被理解调用执行
 - 如果超时了，就会执行 xhr.ontimeout；
 - 如果是正常的数据接收，就会执行 onreadystatechange 来反馈相应的状态。
   
-![XMLHttpRequest 工作流程图](http://blogqiniu.wangminwei.top/202003272119_592.png?/)
+![XMLHttpRequest 工作流程图](http://blogimage.lemonlife.top/202003272119_592.png?/)
 
 ### JavaScript微任务的应用
 > 监听 DOM , [MutationObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver) 
@@ -104,7 +104,7 @@ var timerID = setTimeout(showName,2147483648);// 会被理解调用执行
 
 做为一个单线程的语言，JavaScript,要想充分的利用计算机资源，必须要采用异步编程模型，而对于JS来说就是，渲染进程上面的主线程的事件循环系统了。页面主线程发起了一个耗时的任务，并将任务交给另外一个进程去处理，这时页面主线程会继续执行消息队列中的任务。等该进程处理完这个任务后，会将该任务添加到渲染进程的消息队列中，并排队等待循环系统的处理。
 
-![异步编程模型图](http://blogqiniu.wangminwei.top/202003272037_430.png?/)
+![异步编程模型图](http://blogimage.lemonlife.top/202003272037_430.png?/)
 
 于是乎，为了处理消息队列中返回的事件，就产生了所谓的回调函数的机制。确保我们能正确的处理异步信息。然后就有可能产生回调地狱问题。而Promise的诞生就是想解决这种回调地狱问题。Promise内部实现的机制就是使用了微任务队列，(可以上网搜一下Promise的实现，也可以参看 [我的博客手写Promise](https://lemonlife.top/2020/02/10/interview/#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bpromise%E4%BB%A5%E5%8F%8A%E5%86%85%E9%83%A8%E7%9A%84%E5%AE%9E%E7%8E%B0)。可以看到里面采用了`setTimeout`，是js不提供微队列函数，只能采用setTimeout模拟一下微队列，底层的promise实现，正是把那些状态参数都放到了微队列中等待执行。
 
@@ -140,14 +140,14 @@ console.log('main 4')
 
 操作系统对于资源的管理进程是开销最大的，其次是线程，协程是一种比线程更加轻量级的存在。你可以把协程看成是跑在线程上的任务，一个线程上可以存在多个协程，但是在线程上同时只能执行一个协程，比如当前执行的是 A 协程，要启动 B 协程，那么 A 协程就需要将主线程的控制权交给 B 协程，这就体现在 A 协程暂停执行，B 协程恢复执行；同样，也可以从 B 协程中启动 A 协程。通常，如果从 A 协程启动 B 协程，我们就把 A 协程称为 B 协程的父协程。
 
-![协程执行流程图](http://blogqiniu.wangminwei.top/202003272133_917.png?/)
+![协程执行流程图](http://blogimage.lemonlife.top/202003272133_917.png?/)
 
 **注意**
 
 1. gen 协程和父协程是在主线程上交互执行的，并不是并发执行的，它们之前的切换是通过 yield 和 gen.next 来配合完成的
 2. 对于父子协程，都有自己独立的调用栈，只不过，父协程中一直保留着子协程的调用栈信息，当在 gen 协程中调用了 yield 方法时，JavaScript 引擎会保存 gen 协程当前的调用栈信息，并恢复父协程的调用栈信息。同样，当在父协程中执行 gen.next 时，JavaScript 引擎会保存父协程的调用栈信息，并恢复 gen 协程的调用栈信息。
    
-![协程之间的切换](http://blogqiniu.wangminwei.top/202003272139_187.png?/)
+![协程之间的切换](http://blogimage.lemonlife.top/202003272139_187.png?/)
 
 > async/await
 
@@ -166,7 +166,7 @@ console.log(3)
 // 0 1 3 100 2
 
 ```
-![上述 async/await 执行流程图](http://blogqiniu.wangminwei.top/202003272144_714.png?/)
+![上述 async/await 执行流程图](http://blogimage.lemonlife.top/202003272144_714.png?/)
 
 
 > 本文是我看了[李兵老师极客时间浏览器工作原理的专栏](https://time.geekbang.org/column/intro/216?code=wLzkK4Ecmtj435LqyZ6ecONi5PnKUst4jvEoQKp1yUA%3D)写的总结,文字和图片资料来源与极客时间.

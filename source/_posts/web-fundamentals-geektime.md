@@ -8,7 +8,7 @@ tags:
 ### chrome架构
 **问题1**  只是打开了 1 个页，chrome启动了4个进程(在浏览器打开第一个页面的时候，且没有其他插件，音频的时候)
 
-![Chrome 的任务管理器窗口](http://blogqiniu.wangminwei.top/202003192140_995.png?/)
+![Chrome 的任务管理器窗口](http://blogimage.lemonlife.top/202003192140_995.png?/)
 **进程与线程的特点**
 
 1.  线程是不能单独存在的，它是由进程来启动和管理的
@@ -20,7 +20,7 @@ tags:
 
 **现代化的浏览器进程架构**
 
-![最新的 Chrome 进程架构图](http://blogqiniu.wangminwei.top/202003192202_530.png?/)
+![最新的 Chrome 进程架构图](http://blogimage.lemonlife.top/202003192202_530.png?/)
 
 **浏览器进程。** 主要负责界面显示、用户交互、子进程管理，同时提供存储等功能。
 
@@ -54,13 +54,13 @@ Chrome的默认策略是，每个标签对应一个渲染进程。但是如果�
 
 如果页面里有iframe的话，iframe也会运行在单独的进程中，下图是我浏览器任务管理器的一个截图，图中的辅助框架应该就是指页面中的 `iframe` 标签对应的地址
 
-![贴上我自己电脑里面的一张图](http://blogqiniu.wangminwei.top/202003192230_498.png?/)
+![贴上我自己电脑里面的一张图](http://blogimage.lemonlife.top/202003192230_498.png?/)
 
 **未来面向服务的架构**
 
 为了解决这些问题，在 2016 年，Chrome 官方团队使用“面向服务的架构”（Services Oriented Architecture，简称SOA）的思想设计了新的 Chrome 架构。也就是说 Chrome 整体架构会朝向现代操作系统所采用的“面向服务的架构” 方向发展，原来的各种模块会被重构成独立的服务（Service），每个服务（Service）都可以在独立的进程中运行，访问服务（Service）必须使用定义好的接口，通过 IPC 来通信，从而构建一个更内聚、松耦合、易于维护和扩展的系统，更好实现 Chrome 简单、稳定、高速、安全的目标。Chrome 最终要把 UI、数据库、文件、设备、网络等模块重构为基础服务，类似操作系统底层服务，下面是 Chrome“面向服务的架构”的进程模型图。
 
-![](http://blogqiniu.wangminwei.top/202003192317_372.png?/)
+![](http://blogimage.lemonlife.top/202003192317_372.png?/)
 
 ### 浏览器中的HTTP协议
 TCP和HTTP的关系，以及TCP三次握手四次挥手等，可以见我博客有关网络的文章。
@@ -93,7 +93,7 @@ last-modified: Mon, 20 Dec 2019 09:49:49 GMT
 etag：每个文件有一个，改动文件了就变了，就是个文件hash，每个文件唯一，就像用webpack打包的时候，每个资源都会有这个东西，如： app.js打包后变为 app.xxxx.js，加个唯一hash，也是为了解决缓存问题。
 `发请求-->本地判断资源是否过期-->过期-->请求服务器-->服务器对比资源是否真的过期-->没过期-->返回304状态码-->客户端使用缓存资源` (如果服务器资源已经过期,服务器会返回200)
 
-![缓存查找流程示意图](http://blogqiniu.wangminwei.top/202003200041_288.png?/)
+![缓存查找流程示意图](http://blogimage.lemonlife.top/202003200041_288.png?/)
 
 #### 浏览器端发起 HTTP 请求流程
 ##### 构建请求
@@ -115,17 +115,17 @@ Chrome 有个机制，同一个域名同时最多只能建立 6 个 TCP 连接�
 ##### 发送 HTTP 请求
 一旦建立了 TCP 连接，浏览器就可以和服务器进行通信了。而 HTTP 中的数据正是在这个通信过程中传输的。首先浏览器会向服务器发送请求行，它包括了请求方法、请求 URI（Uniform Resource Identifier）和 HTTP 版本协议。
 
-![HTTP 请求数据格式](http://blogqiniu.wangminwei.top/202003200034_510.png?/)
+![HTTP 请求数据格式](http://blogimage.lemonlife.top/202003200034_510.png?/)
 
 #### 服务器端处理 HTTP 请求流程
 
-![](http://blogqiniu.wangminwei.top/202003200038_19.png?/)
+![](http://blogimage.lemonlife.top/202003200038_19.png?/)
 
 #### 断开连接
 四次挥手，通常情况下，一旦服务器向客户端返回了请求数据，它就要关闭 TCP 连接。不过如果浏览器或者服务器在其头信息中加入了`Connection:Keep-Alive 
 `。那么 TCP 连接在发送后将仍然保持打开状态，这样浏览器就可以继续通过同一个 TCP 连接发送请求。保持 TCP 连接可以省去下次请求时需要建立连接的时间，提升资源加载速度。比如，一个 Web 页面中内嵌的图片就都来自同一个 Web 站点，如果初始化了一个持久连接，你就可以复用该连接，以请求其他资源，而不需要重新再建立新的 TCP 连接。
 
-![HTTP 请求流程示意图](http://blogqiniu.wangminwei.top/202003192344_989.png?/)
+![HTTP 请求流程示意图](http://blogimage.lemonlife.top/202003192344_989.png?/)
 
 ### 浏览器渲染流程
 可以参看我的博客 [浏览器工作原理~渲染篇](http://lemonlife.top/2020/02/21/web-fundamentals/) 和 [浏览器工作原理~优化篇](http://lemonlife.top/2020/02/23/web-fundamentals-optimize/)
@@ -147,11 +147,11 @@ JavaScript的数据类型有8种,(基础数据类型是7种)。
 
 对于 `Boolean` `Null` `Undefined` `Number` `BigInt`  `String`  `Symbol` 这七种数据基础类型是储存在内存的栈空间中的，而`Object` 这种引用数据类型是储存在堆空间中的。(此处的栈，和堆，指的是内存空间。注意和方法调用的时候的堆栈区分)。
 
-![JS内存模型](http://blogqiniu.wangminwei.top/202003211302_206.png?/)
+![JS内存模型](http://blogimage.lemonlife.top/202003211302_206.png?/)
 
 在函数执行期间，对于储存在栈空间中的基础数据类型变量，是直接被直接赋值到函数的调用栈中，对于堆空间中的引用类型变量，把变量的地址赋值到函数的调用栈中。
 
-![函数调用模型](http://blogqiniu.wangminwei.top/202003211305_429.png?/)
+![函数调用模型](http://blogimage.lemonlife.top/202003211305_429.png?/)
 > 所以我觉得 js 本身其实没有，堆内存和栈内存的区别，只有基础数据类型和引用数据类型的区别。
 
 **代码的两个阶段**
@@ -162,11 +162,11 @@ JavaScript的数据类型有8种,(基础数据类型是7种)。
 
 可以看下面那个例子函数 `foo` ，当代码运行到 `var bar = foo()` 时候。代码会先创建 `myName` `test` `innerBar` 三个变量。
 
-![代码创建过程](http://blogqiniu.wangminwei.top/202003211711_280.png?/)
+![代码创建过程](http://blogimage.lemonlife.top/202003211711_280.png?/)
 
 在代码的执行阶段，会依次对这三个变量进行赋值。当代码执行到 `return innerBar` 的时候，此时三个变量已经赋值完成。
 
-![代码的执行阶段](http://blogqiniu.wangminwei.top/202003211719_506.png?/)
+![代码的执行阶段](http://blogimage.lemonlife.top/202003211719_506.png?/)
 
 **闭包机制**
 
@@ -200,11 +200,11 @@ console.log(bar.getName()) //极客
 
 对于上面的例子也就是，当 `foo` 函数执行完 `var innerBar = ` 之后。会生成 `Closure (foo)` 对象,然后在`setName` 和 `getName` 这两个对象上都绑定上生成的  `Closure (foo)` 。
 
-![foo函数执行情况](http://blogqiniu.wangminwei.top/202003211910_165.png?/)
+![foo函数执行情况](http://blogimage.lemonlife.top/202003211910_165.png?/)
 
 最后在我们执行 `bar.setName(" 极客")` 和 `bar.getName()` 的时候 在setName函数的创建过程中，可以看到函数里面已经有了对象 ，`Closure (foo)`，然后再在函数的执行阶段重复之前分析的函数执行阶段的赋值操作。
 
-![setName 函数的创建阶段](http://blogqiniu.wangminwei.top/202003211917_421.png?/)
+![setName 函数的创建阶段](http://blogimage.lemonlife.top/202003211917_421.png?/)
 
 #### v8的垃圾回收(GC)
 > 首先值得庆幸的是，V8是自动管理垃圾回收的。某个函数执行完成之后，指向该函数的函数指针(ESP)就会指向下一个函数，该函数的执行上下文会从堆内存销毁掉。
@@ -218,7 +218,7 @@ V8会把堆分层新生代和老生代 (代际假说)，新生代收集器也称
 
 **新生代回收过程**
 
-![新生区被划分为对象区域和空闲区域](http://blogqiniu.wangminwei.top/202003212142_450.png?/)
+![新生区被划分为对象区域和空闲区域](http://blogimage.lemonlife.top/202003212142_450.png?/)
 
 新增的对象都会被放在新生代的对象区，然后经历，一标记，二回收，之后整理的时候是将对象区剩下的变量复制到空闲区，这样就得到了,空内存的对象区和有对象且内存连续的空闲区，再把此时的对象区，空闲区身份交换。继续写入新变量进行下一轮GC。（不得不说这里真的很佩服这个垃圾收集器的设计思路，身份交换的想法，能让新生代中的这两块区域无限重复使用下去）
 
@@ -228,7 +228,7 @@ V8会把堆分层新生代和老生代 (代际假说)，新生代收集器也称
 
 主垃圾收集器，主要采用 <b>标记-清除（Mark-Sweep)</b> 的方式进行垃圾回收。标记清除的过程和之前差不多，但是不同的是，老生区不是通过复制对象来整理内存的，因为老生区内存大，对象多，复制整理会很耗时。老生区是在多次标记之后，将老生区的存活对象，朝着老生区的一段移动。然后直接一次性清除掉其他地方的对象。这一过程被称为 <b>标记-整理</b> ,下面我画了一个大致流程。(假设按图中可以直接清除左边两列之外的列)
 
-![标记和清除的过程](http://blogqiniu.wangminwei.top/202003212305_912.png?/)
+![标记和清除的过程](http://blogimage.lemonlife.top/202003212305_912.png?/)
 
 **全停顿**
 
@@ -241,16 +241,16 @@ V8会把堆分层新生代和老生代 (代际假说)，新生代收集器也称
 
 **编译型语言** 在程序执行之前，需要经过编译期的编译过程，并且编译之后会直接保留机器能读懂二进制文件，每次运行程序时，都可以直接运行二进制文件，不需要再次重新编译了.(C/C++、GO)
 
-![编译型语言的过程](http://blogqiniu.wangminwei.top/202003220954_620.png?/)
+![编译型语言的过程](http://blogimage.lemonlife.top/202003220954_620.png?/)
 
 **解释型语言** 在每次运行时都需要通过解释器对程序进行动态的解释和执行。(Python,JavaScript)
 
-![解释型语言的过程](http://blogqiniu.wangminwei.top/202003221009_316.png?/)
+![解释型语言的过程](http://blogimage.lemonlife.top/202003221009_316.png?/)
 
 #### V8是如何执行一段JavaScript代码
 V8在执行过程中既有 解释器(lgnition) ,又有 解释器(TurboFan)
 
-![V8执行一段代码流程图](http://blogqiniu.wangminwei.top/202003221022_904.png?/)
+![V8执行一段代码流程图](http://blogimage.lemonlife.top/202003221022_904.png?/)
 
 #### 生成抽象语法树(AST)和执行上下文
    
@@ -265,18 +265,18 @@ AST的结构和代码结构非常相似，编译期或者解释器后续的工�
 
 Babel将ES6转成ES5代码的过程，就是先将ES6代码转成AST,然后再将ES6语法生成的AST转换成ES5的AST (Babel的代码库里有函数，能把ES6的代码复写成ES5的代码)
 
-![上述代码生成的AST](http://blogqiniu.wangminwei.top/202003221034_422.png?/)
+![上述代码生成的AST](http://blogimage.lemonlife.top/202003221034_422.png?/)
 
 ESLint第一阶段是词法分析(tokenize),将一行行的源码拆解成一个个token。(语法上不可以再分的最小字符和字符串),图中 `var` `myName` `= `" `极客时间` 这四个都是四个token。
 
-![生成Token](http://blogqiniu.wangminwei.top/202003221123_690.png?/)
+![生成Token](http://blogimage.lemonlife.top/202003221123_690.png?/)
 
 第二个阶段是语法分析(parse),作用是将上一步生成的token数据，根据语法规则转为AST。如果源码符合语法规则，会顺利生成Token，如果源码存在语法错误，这一步就会终止，并抛出一个"语法错误"。成功生成了AST后，V8就会生成该段代码的执行上下文。
 
 #### 生成字节码
 解释器lgnition，可以转换成AST生成字节码，并解释执行字节码。字节码是介于AST和机器码之间的一种代码。比机器码占用的内存要少很多，字节码需要通过解释器将其转成机器码才能执行。
 
-![字节码机器码内存占用对比](http://blogqiniu.wangminwei.top/202003221240_926.png?/)
+![字节码机器码内存占用对比](http://blogimage.lemonlife.top/202003221240_926.png?/)
 
 (这一段我猜测一下，之前的V8模型可能是，AST转换生成机器码，然后再执行机器码，就会出现机器码被储存在内存中的现象；但是现在是AST转换从字节码，在运行到某个字节码片段时，直接把字节码转成机器码然后执行,这个过程堆积在内存中的只是字节码，机器码一生成就会被消费掉，所以节约了内存)
 
@@ -284,6 +284,6 @@ ESLint第一阶段是词法分析(tokenize),将一行行的源码拆解成一个
 
 生成代码之后，到了代码的执行阶段。解释器会逐条消费字节码。在执行字节码的过程中，如果有经常被执行的字节码（热点代码 HotSpot）。也会被后台编译器（TurboFan）转换成更高效的机器码，以后再遇到这段代码时，直接运生成的行机器码即可。这种将解释器和编译器结合使用的技术称作**即时编译（JIT）** 
 
-![即时编译 JIT 技术](http://blogqiniu.wangminwei.top/202003221313_799.png?/)
+![即时编译 JIT 技术](http://blogimage.lemonlife.top/202003221313_799.png?/)
 
 > 本文是我看了[李兵老师极客时间浏览器工作原理的专栏](https://time.geekbang.org/column/intro/216?code=wLzkK4Ecmtj435LqyZ6ecONi5PnKUst4jvEoQKp1yUA%3D)写的总结,文字和图片资料来源与极客时间，不得不说这个专题，作者的工作经历真的丰富。这篇博客大概概括的写了专栏的一至四节，this的指向性没有涉及(因为我觉得在es6的诞生后this的指向已经比较明确了)。

@@ -11,7 +11,7 @@ tags:
   - ，
 
 
-![模型](http://blogqiniu.wangminwei.top/202002111209_27.png?/)
+![模型](http://blogimage.lemonlife.top/202002111209_27.png?/)
 ### 三次握手/四次挥手
 > 我方应用层去调用我方传输控制层。我方传输控制层生成想要握手的第一个包`sync`。
 > 对方传输控制层接收到消息后，产生`sync+ack`包，发送回我方。
@@ -23,11 +23,11 @@ tags:
 
 **终止FIN：** 用来释放一个连接。FIN=1表示：此报文段的发送方的数据已经发送完毕，并要求释放运输连接
 
-![三次握手模型](http://blogqiniu.wangminwei.top/202002111332_949.png?/)
+![三次握手模型](http://blogimage.lemonlife.top/202002111332_949.png?/)
 
-![四次挥手模型](http://blogqiniu.wangminwei.top/202002111331_376.png?/)
+![四次挥手模型](http://blogimage.lemonlife.top/202002111331_376.png?/)
 
-![](http://blogqiniu.wangminwei.top/202002111335_985.png?/)
+![](http://blogimage.lemonlife.top/202002111335_985.png?/)
 
-![](http://blogqiniu.wangminwei.top/202002111337_197.png?/)
+![](http://blogimage.lemonlife.top/202002111337_197.png?/)
 

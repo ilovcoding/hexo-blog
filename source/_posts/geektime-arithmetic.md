@@ -10,7 +10,7 @@ tags:
 ### 数组的储存
 由定义可知，计算机给数组开辟一个连续的内存空间，会给数组的首地址，分配一个内存地址，接下来的地址，首地址加上被访问元素之前元素的数据类型大小之和，即`a[i]_address = base_address + i * data_type_size` 如下图我们假设`int`数据,每个数据大小占4个字节
 
-![](http://blogqiniu.wangminwei.top/202003191137_954.png?/)
+![](http://blogimage.lemonlife.top/202003191137_954.png?/)
 ### 数组和链表的区别
 数组区别与链表是数组支持随机访问，随机访问的时间复杂度是O(1);(注意不是查找,查找最适合的是哈希表，不是数组),链表支持元素的快速的插入或者删除。
 
@@ -18,7 +18,7 @@ tags:
 
 而链表恰恰相反，它并不需要一块连续的内存空间，它通过“指针”将一组零散的内存块串联起来使用，所以如果我们申请的是 100MB 大小的链表，根本不会有问题。
 
-![链表和数组的内存分布](http://blogqiniu.wangminwei.top/202003191427_188.png?/)
+![链表和数组的内存分布](http://blogimage.lemonlife.top/202003191427_188.png?/)
 
 > 此篇文章文字，图片资料来源于[极客时间算法与数据结构之美](https://time.geekbang.org/column/intro/126)专题
 > [项目github地址](https://github.com/wangzheng0822/algo)

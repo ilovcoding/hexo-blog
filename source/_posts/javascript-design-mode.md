@@ -222,7 +222,7 @@ function delayFun(fn: Function, interval: number = 500) {
 > 案例源码[GitHub链接](https://github.com/wmwgithub/blog-demo/blob/master/2019_11_6/1/onresize.html)
 
 可以看到设置`interval=1000`后在用户平滑的改变浏览器窗口大小时候函数每秒钟只执行了一次
-![](http://blogqiniu.wangminwei.top/201911061432_908.png)
+![](http://blogimage.lemonlife.top/201911061432_908.png)
 
 2. 分时函数实现节流
 > 上面一种方式针对于，用户频繁的操作，还有一种场景就是用户只操作一次，但是带来的函数的调用是成百上千次；比如用户点了加载数据按钮加载数据的时候，此时数据有上千条；一次性加载页面肯定会卡死甚至浏览器直接退出;这时候就需要分时加载；比如100ms加载10条这种方式;而不是在用户一点击就疯狂调用对应的函数

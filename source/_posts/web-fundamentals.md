@@ -7,7 +7,7 @@ tags:
 ### 关键渲染路径
 关键渲染路径是指浏览器所经历的一系列步骤。从而将HTML,CSS和JavaScript，转换成屏幕上呈现的像素内容，首先获取HTML并且开始构建文档对象模型(DOM),然后获取CSS构建CSS对象模型(CSSOM),然后将两者结合形成渲染树(Render Tree),然后浏览器根据渲染树知道了每个元素的内容和位置(Layout)。最后渲染引擎将元素绘制在屏幕上(Paint).
 
-![](http://blogqiniu.wangminwei.top/202002211149_876.png?/)
+![](http://blogimage.lemonlife.top/202002211149_876.png?/)
 ### 构建对象模型(HTML转成DOM)
 浏览器渲染页面要先构建DOM和CSSOM,因此，要尽快将HTML,CSS提供给浏览器。<br>
 当我们在浏览器输入 `URL` 的时候,浏览器会向服务器请求资源拿到HTML等资源，然后拿到的HTML文档头部规定了浏览器按照什么样的规范来处理HTML文``件。
@@ -33,14 +33,14 @@ tags:
   </body>
 </html>
 ```
-![图片来源Google](http://blogqiniu.wangminwei.top/202002222033_585.png?/)
+![图片来源Google](http://blogimage.lemonlife.top/202002222033_585.png?/)
 
 1. 转换： 浏览器从磁盘或网络读取 HTML 的原始字节，并根据文件的指定编码（例如 UTF-8）将它们转换成各个字符。
 2. 令牌化： 浏览器将字符串转换成 W3C HTML5 标准规定的各种令牌，例如，`<html>`、`<body>` 以及其他尖括号内的字符串。每个令牌都具有特殊含义和一组规则。
 3. 词法分析： 发出的令牌转换成定义其属性和规则的“对象”。
 4. DOM 构建： 最后，由于 HTML 标记定义不同标记之间的关系（一些标记包含在其他标记内），创建的对象链接在一个树数据结构内，此结构也会捕获原始标记中定义的父项-子项关系：HTML 对象是 body 对象的父项，body 是 paragraph 对象的父项，依此类推。
 
-![图片来源Google](http://blogqiniu.wangminwei.top/202002222035_775.png?/)
+![图片来源Google](http://blogimage.lemonlife.top/202002222035_775.png?/)
 
 ### 生成CSSOM
 浏览器也会根据css规范来解析css,与DOM不同的是css会向下层叠，因此也叫层叠样式表或者层叠样式规则，即子节点可能会继承父节点的一些属性，比如body中定义了字体大小16px。其他的子属性会继承这一大小。而且浏览器解析css过程是阻塞的，浏览器需要解析完所有的css才会使用css样式(和浏览器的回流重绘一样)。
@@ -54,11 +54,11 @@ img { float: right }
 ```
 与处理 HTML 时一样，我们需要将收到的 CSS 规则转换成某种浏览器能够理解和处理的东西。因此，我们会重复 HTML 过程，不过是为 CSS 而不是 HTML.
 
-![CSS处理过程](http://blogqiniu.wangminwei.top/202002222037_642.png?/)
+![CSS处理过程](http://blogimage.lemonlife.top/202002222037_642.png?/)
 
 CSS 字节转换成字符，接着转换成令牌和节点，最后链接到一个称为“CSS 对象模型”(CSSOM) 的树结构内：
 
-![CSSOM](http://blogqiniu.wangminwei.top/202002222038_142.png?/)
+![CSSOM](http://blogimage.lemonlife.top/202002222038_142.png?/)
 
 CSSOM 为何具有树结构？为页面上的任何对象计算最后一组样式时，浏览器都会先从适用于该节点的最通用规则开始（例如，如果该节点是 body 元素的子项，则应用所有 body 样式），然后通过应用更具体的规则（即规则“向下级联”）以递归方式优化计算的样式。
 
@@ -74,16 +74,16 @@ CSSOM 为何具有树结构？为页面上的任何对象计算最后一组样�
 布局的宽度应该等于设备的宽度，如果没有可能会采用默认的宽度例如`width:100%` 会变成`980px`。
 
 通过浏览器控制台分析布局事件，如下图是某网页加载过程，可找出事件耗时比较大的过程，分页原因给予优化，优化布局和代码，尽量做到批量布局，避免出现多个布局事件。
-![RenderTree加载过程](http://blogqiniu.wangminwei.top/202002222114_253.png?/)
+![RenderTree加载过程](http://blogimage.lemonlife.top/202002222114_253.png?/)
 
 ### 绘制页面(Paint)
 同上我们可以获取到，网页Paint的过程，可见下图网页主要耗时是渲染层合并的过程(Composite Layers,[了解更多](https://blog.csdn.net/weixin_40581980/article/details/81453283))
 
-![Paint过程图](http://blogqiniu.wangminwei.top/202002222137_360.png?/)
+![Paint过程图](http://blogimage.lemonlife.top/202002222137_360.png?/)
 ### 最后
 首先我们接收到HTML(本地或者浏览器)，然后开始解析它，DOM会逐步构建，并非一次性响应。在head中如果发现css和js链接，就会发请求，为了形成RenderTree,所以会先解析CSS形成CSSOM,解析CSS文件的过程会屏蔽JS引擎，相当于给DOM上锁，防止CSS,JS同时修改的现象发生。完成CSSOM会取消屏蔽 JS引擎，然后接收JS,然后执行JS,JavaScript解析完成后，我们就可以继续构建DOM的构建。获取DOM和CSSOM后,  我们将合并二者并构建RenderTree,然后运行布局绘制网页。
 
-![Google习题](http://blogqiniu.wangminwei.top/202002222158_212.png?/)
+![Google习题](http://blogimage.lemonlife.top/202002222158_212.png?/)
 
 - 浏览器优化应当讲究，先权衡再优化的发展，因此就需要用Google Devtools 具体分析。
 - 默认情况下，CSS 被视为阻塞渲染的资源，这意味着浏览器将不会渲染任何已处理的内容，直至 CSSOM 构建完毕。请务必精简您的 CSS，尽快提供它，并利用媒体类型和查询来解除对渲染的阻塞。在渲染树构建中，我们看到关键渲染路径要求我们同时具有 DOM 和 CSSOM 才能构建渲染树。这会给性能造成严重影响：**HTML 和 CSS 都是阻塞渲染的资源**
