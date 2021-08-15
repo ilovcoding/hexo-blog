@@ -8,7 +8,7 @@ tags: 设计模式
 用于描述类和类之间的静态关系，包括类之间的关 `依赖`, `泛化（继承）`，`实现`，`关联`，`聚合` 和 `组合`
 
 ## 依赖关系（Dependence）
-一般使用 `----->` 表示依赖关系。`CraeteHuman -----> People` 表示类 `CreateHumam` 依赖类 `People`。 
+一般使用 `----->` 表示依赖关系。依赖关系是类与类之间最基础的关系，只要在 A 类中使用 B 类，就表示 A B 之间存在依赖关系。`CraeteHuman -----> People` 表示类 `CreateHumam` 依赖类 `People`。 
 
 ```Java
 public class People {
@@ -33,7 +33,7 @@ public class CreateHuman {
 ![Dependance](https://blogimage.lemonlife.top/20210808192757.png)
 
 ## 聚合关系（Aggregation）
-聚合表示整体和部分的关系，常` B ◇—————> A`表示 `A` 是 `B` 的一部分。对于人来说。性格特征是人的一部分。因此可以定义类 `Character`。` People ◇—————> Character`
+聚合表示整体和部分的关系，常` A ◇—————> B`表示 `B` 是 `A` 的一部分。即只要在 A类中存在以成员变量形式存在的 B 类，就说明 A 与 B 之间存在聚合关系。对于人来说。性格特征是人的一部分。因此可以定义类 `Character`。` People ◇—————> Character`
 ```JAVA
 
 public class Character {
@@ -61,7 +61,7 @@ public class People {
 
 
 ## 组合（Composite）
-组合表示某个部分是整体的易一部分。类于类之间同时创建同时销毁。例如现在每次创建一个`"善良"`的人。类 `Character` 和类 `People` 总是同时实例化。常用 `People♦——————>Character`
+组合表示某个部分是整体的易一部分，是一种更为特殊的聚合关系。A 类与 B 类总是同时创建同时销毁。例如现在每次创建一个`"善良"`的人。类 `Character` 和类 `People` 总是同时实例化。常用 `People ♦——————> Character`
 
 ```JAVA
 public class Character {
@@ -129,7 +129,7 @@ public class Man extends People {
 ![继承 Generalization](https://blogimage.lemonlife.top/20210808215621.png)
 
 ## 实现关系 (Implementation)
-实现一般是指类实现了某个特点的标准（接口）。如下 `PeopleInterface`规定了人有自我介绍（`introduce`）的能力， `People` 实现了 `PeopleInterface` 拥有了自我介绍的能力。  
+实现一般是指类实现了某个特点的标准（接口）。如下 `PeopleInterface`规定了人有自我介绍（` `）的能力， `People` 实现了 `PeopleInterface` 拥有了自我介绍的能力。  
 ```JAVA
 public interface PeopleInterface {
     public default void introduce(){};
@@ -168,6 +168,5 @@ public class Doctor {
 public class People  {
    public List<Doctor> doctors;
 }
-
 ``` 
 ![关联关系 Association](https://blogimage.lemonlife.top/20210808231122.png)
