@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="栈的压入、弹出序列"><meta name="keywords" content="算法与数据结构,剑指Offer"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>栈的压入、弹出序列 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%8C%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 題目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text"> 题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text"> 题例分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text"> 代码</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">栈的压入、弹出序列</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-02-22</time></div><div class="article-container" id="post-content"><h3 id="題目描述"><a class="markdownIt-Anchor" href="#題目描述"></a> 題目描述</h3>
+<p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列 {1,2,3,4,5} 是某栈的压栈序列，序列 {4,5,3,2,1} 是该压栈序列对应的一个弹出序列，但 {4,3,5,1,2} 就不可能是该压栈序列的弹出序列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：pushed &#x3D; [1,2,3,4,5], popped &#x3D; [4,5,3,2,1]</span><br><span class="line">输出：true</span><br><span class="line">解释：我们可以按以下顺序执行：</span><br><span class="line">push(1), push(2), push(3), push(4), pop() -&gt; 4,</span><br><span class="line">push(5), pop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="题目分析"><a class="markdownIt-Anchor" href="#题目分析"></a> 题目分析</h3>
+<p>首先我们知道原始数的序列题目已知的，如 <code>[1,2,3,4,5]</code> ,从该序列的第一个数开始每次都要进行一次<code>必须操作</code>,压入该序列一个数到 <code>临时栈</code> ，然后执行<code>可选操作</code>弹出<code>临时栈</code>中的数(弹出的个数随意，可以不弹出，即不执行这个可选操作，也可以全部都弹出)，直到遍历到序列最后一个，压入临时栈后，依次弹出<code>临时栈</code>中剩下所有的数。弹出的数每次都会被记录下来。题目现在给出了弹出序列，意思就是确定了我们在哪一步要执行弹出栈这个<code>可选操作</code>，即我们压入的数，和弹出序列中的第一个数相等时候，开始执行可选操作，每弹出一个，弹出序列的指针向后一次，直到 <code>临时栈</code> 栈顶元素和弹出序列中指针，指的数不相等为止，继续执行下一次操作。</p>
+<h3 id="题例分析"><a class="markdownIt-Anchor" href="#题例分析"></a> 题例分析</h3>
+<p><code>[1,2,3,4,5]</code>  <code>[4,5,3,2,1]</code></p>
+<table>
+<thead>
+<tr>
+<th>必须操作</th>
+<th>临时栈</th>
+<th>可选操作</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>push(1)</td>
+<td>[1]</td>
+<td>不执行</td>
+<td>4 != 1</td>
+</tr>
+<tr>
+<td>push(2)</td>
+<td>[1,2]</td>
+<td>不执行</td>
+<td>4 != 2</td>
+</tr>
+<tr>
+<td>push(3)</td>
+<td>[1,2,3]</td>
+<td>不执行</td>
+<td>4 != 3</td>
+</tr>
+<tr>
+<td>push(4)</td>
+<td>[1,2,3,4]</td>
+<td>pop(4)</td>
+<td>4 == 4,5 != 3</td>
+</tr>
+<tr>
+<td>push(5)</td>
+<td>[1,2,3,5]</td>
+<td>pop(5),pop(3),pop(2),pop(1)</td>
+<td>最后了,依次弹出临时栈中剩余的元素</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>弹出序列记录为[4,5,3,2,1] 返回 true</p>
+</blockquote>
+<p><code>[1,2,3,4,5]</code>  <code>[4,3,5,1,2]</code></p>
+<table>
+<thead>
+<tr>
+<th>必须操作</th>
+<th>临时栈</th>
+<th>可选操作</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>push(1)</td>
+<td>[1]</td>
+<td>不执行</td>
+<td>4 != 1</td>
+</tr>
+<tr>
+<td>push(2)</td>
+<td>[1,2]</td>
+<td>不执行</td>
+<td>4 != 2</td>
+</tr>
+<tr>
+<td>push(3)</td>
+<td>[1,2,3]</td>
+<td>不执行</td>
+<td>4 != 3</td>
+</tr>
+<tr>
+<td>push(4)</td>
+<td>[1,2,3,4]</td>
+<td>pop(4),pop(3)</td>
+<td>4 == 4,3 == 3, 5 != 2</td>
+</tr>
+<tr>
+<td>push(5)</td>
+<td>[1,2,5]</td>
+<td>pop(5),pop(2),pop(1)</td>
+<td>最后了,依次弹出临时栈中剩余的元素</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>弹出序列记录为[4,3,5,2,1] 返回 false</p>
+</blockquote>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">pushed</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">popped</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> validateStackSequences = <span class="function"><span class="keyword">function</span> (<span class="params">pushed, popped</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (pushed.length == <span class="number">0</span> &amp;&amp; popped.length == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (pushed.length == <span class="number">0</span> || popped.length == <span class="number">0</span> || pushed.length != popped.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> stack = [] <span class="comment">//辅助栈</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pushed.length; i++) &#123;</span><br><span class="line">    stack.push(pushed[i])</span><br><span class="line">    <span class="keyword">while</span>(stack.length !== <span class="number">0</span>  &amp;&amp; j&lt;popped.length &amp;&amp; stack[stack.length-<span class="number">1</span>] === popped[j] )&#123;</span><br><span class="line">      j++</span><br><span class="line">      stack.pop()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> stack.length === <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2020/02/22/validate-stack-sequences/">https://wmwgithub.github.io/2020/02/22/validate-stack-sequences/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a><a class="post-meta__tags" href="/tags/%E5%89%91%E6%8C%87Offer/">剑指Offer</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/02/23/web-fundamentals-optimize/"><i class="fa fa-chevron-left">  </i><span>浏览器工作原理~优化篇</span></a></div><div class="next-post pull-right"><a href="/2020/02/21/spiral-order-matrix/"><span>顺时针打印矩阵</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

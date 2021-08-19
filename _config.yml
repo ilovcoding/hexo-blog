@@ -83,5 +83,5 @@ theme: melody
 deploy:
   type: git
   repo: git@github.com:wmwgithub/wmwgithub.github.io.git
-  branch: master
-  message: "修改/增加新帖子"
+  branch: main
+  message: ""

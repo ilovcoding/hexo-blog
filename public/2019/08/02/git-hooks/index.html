@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="git自动化部署项目"><meta name="keywords" content="Git"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>git自动化部署项目 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-spring-boot-%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text"> Java spring boot 项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text"> git操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text"> 部署相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E4%BB%A3%E7%A0%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 推送代码到远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text"> 常见问题和解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E8%A1%A5%E5%85%85%E5%92%8C%E6%9C%AC%E8%8A%82%E5%86%85%E5%AE%B9%E6%97%A0%E5%85%B3%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">1.5.</span> <span class="toc-text"> 最后补充和本节内容无关的内容</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">git自动化部署项目</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-02</time></div><div class="article-container" id="post-content"><h2 id="java-spring-boot-项目"><a class="markdownIt-Anchor" href="#java-spring-boot-项目"></a> Java spring boot 项目</h2>
+<blockquote>
+<p>使用git和docker 自动化部署spring boot 项目,默认一下流程用<code>root</code>身份进行，普通用户登录请在一些命令前加<code>sudo</code>;</p>
+</blockquote>
+<h3 id="git操作"><a class="markdownIt-Anchor" href="#git操作"></a> git操作</h3>
+<ol>
+<li>服务器上创建git仓库(假设仓库名称是times)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git inint --bare times.git</span><br><span class="line">chmod -R +777 times.git</span><br><span class="line">cd times.git&#x2F;hooks</span><br><span class="line">touch post-receive</span><br><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建一些目录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir times.tmp</span><br><span class="line">mkdir times.work</span><br><span class="line">cd times.work</span><br><span class="line">touch .&#x2F;work-hooks</span><br><span class="line">chmod +x work-hooks</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>编写自动化脚本(post-receive文件)</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> GIT_DIR</span><br><span class="line">GIT_DIR=/root/times.git</span><br><span class="line">WORK_DIR=/root/times.work</span><br><span class="line">TMP=/root/times.tmp</span><br><span class="line"><span class="comment"># 把times仓库里面的代码克隆到TMP临时目录</span></span><br><span class="line">git <span class="built_in">clone</span> <span class="variable">$GIT_DIR</span> <span class="variable">$TMP</span></span><br><span class="line"><span class="comment"># 把临时文件复制到工作区文件夹</span></span><br><span class="line">\cp -rf <span class="variable">$&#123;TMP&#125;</span>/*  <span class="variable">$&#123;WORK_DIR&#125;</span>/</span><br><span class="line"><span class="comment"># 清除临时目录</span></span><br><span class="line">rm -rf <span class="variable">$&#123;TMP&#125;</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$WORK_DIR</span></span><br><span class="line"><span class="comment">#执行工作区里面的工作脚本</span></span><br><span class="line">sudo ./work-hooks</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>编写工作文件夹里面的部署</li>
+</ol>
+<blockquote>
+<p>即<code>times.work</code>文件夹下的<code>work-hooks</code>脚本</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#用maven打包项目</span></span><br><span class="line"><span class="comment">#mvn package</span></span><br><span class="line"><span class="comment">#跳过测试用例打包项目</span></span><br><span class="line">mvn  package  -Dmaven.skip.test=<span class="literal">true</span></span><br><span class="line"><span class="comment">#AR=$(pwd)/target/photos-0.0.1-SNAPSHOT.war</span></span><br><span class="line"><span class="comment">#docker 运行项目</span></span><br><span class="line"><span class="comment"># docker run -p 8080:8080 --name times-springboot -v /root/times.work/target/photos-0.0.1-SNAPSHOT.war:/photos-0.0.1-SNAPSHOT.war -d openjdk:8-jdk nohup  java -jar /photos-0.0.1-SNAPSHOT.war</span></span><br><span class="line"><span class="comment"># docker run -p 8080:8080 --name times-springboot -v /root/times.work/target/photos-0.0.1-SNAPSHOT.war:/photos-0.0.1-SNAPSHOT.war --link times-mysql:mysql   -d openjdk:8-jdk nohup  java -jar /photos-0.0.1-SNAPSHOT.war </span></span><br><span class="line">docker restart times-springboot</span><br></pre></td></tr></table></figure>
+<h3 id="部署相关命令"><a class="markdownIt-Anchor" href="#部署相关命令"></a> 部署相关命令</h3>
+<blockquote>
+<p><code>cd /root/times.work</code> <code>vim</code>cd</p>
+</blockquote>
+<h3 id="推送代码到远程仓库"><a class="markdownIt-Anchor" href="#推送代码到远程仓库"></a> 推送代码到远程仓库</h3>
+<ul>
+<li>简单版本每次推送都需要输密码</li>
+</ul>
+<ol>
+<li>本地代码仓库添加远程仓库<br />
+<code>git remote add aly-times root@106.15.179.33:/root/times.git</code></li>
+<li>推送本地代码去远程仓库<br />
+<code>git push aly-times master</code>如果出现代码冲突推送不上可直接<code>git push -f aly-times master</code></li>
+</ol>
+<h3 id="常见问题和解决办法"><a class="markdownIt-Anchor" href="#常见问题和解决办法"></a> 常见问题和解决办法</h3>
+<ol>
+<li>报错<code>bash: ***:command not found</code><br />
+解决办法<a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2012-07/66270.htm">参看链接</a><br />
+<img src="../../../../images/git-hooks/solution1.png" alt="链接内容" /></li>
+</ol>
+<h3 id="最后补充和本节内容无关的内容"><a class="markdownIt-Anchor" href="#最后补充和本节内容无关的内容"></a> 最后补充和本节内容无关的内容</h3>
+<ol>
+<li>后台运行spring boot项目<br />
+<code>nohup java -jar yourackage-version.jar &gt;temp.log &amp;</code></li>
+</ol>
+<blockquote>
+<p>nohup – no hang up 意味保持执行不挂起之意。<br />
+&amp; – 表示在后台执行进程 ，与&amp;&amp; 不同，&amp;&amp;代表执行前后两条指令。<br />
+– 这个是Linux重定向的命令，可以理解为可以将命令行输出的日志等内容重定向到制定的文件如上指令中的temp.log文件中。Linux重定向指令还有&gt;&gt;该指令和&gt;的区别是，前者是追加写入，后者是覆盖写入。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yanJunit/article/details/77728338">参看链接</a></p>
+<ol start="2">
+<li>停止运行的项目</li>
+</ol>
+<ul>
+<li>通过运行<code>war</code>包名称查找进程id <code>ps -ef|grep jenkins.war</code>  (jenkins.war,运行时运行的war包)</li>
+<li>或者 通过程序运行端口查找进程id 【Linux】 <code>netstat -nlp |grep 8080</code> 【Windows】<code>netstat -ano|findstr 8080</code></li>
+<li>结束对应进程 【Linux】 <code>kill 7832 pid</code> 【Windows】<code>taskkill -F -PID 7832</code>   (7832,进程id)</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38950013/article/details/95163962">参看链接</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2019/08/02/git-hooks/">https://wmwgithub.github.io/2019/08/02/git-hooks/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/09/16/javascript-design-mode/"><i class="fa fa-chevron-left">  </i><span>设计模式(零)</span></a></div><div class="next-post pull-right"><a href="/2019/07/30/git-use-method/"><span>Git使用方法</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

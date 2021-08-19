@@ -1,0 +1,6 @@
+{
+  "main": "./qincloud/index.js",
+  "watch": [
+    "**/*.js"
+  ]
+}

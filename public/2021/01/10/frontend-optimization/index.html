@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="前端全链路性能优化"><meta name="keywords" content="前端,性能优化"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>前端全链路性能优化 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text"> 静态资源优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text"> 图片优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 相关工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%9C%A8%E7%BD%91%E9%A1%B5%E4%B8%AD%E6%98%BE%E7%A4%BA"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 图片在网页中显示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text"> HTML优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 文件优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E5%8D%87css%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 提升CSS渲染性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text"> JS优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.2.4.</span> <span class="toc-text"> JS模块化</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">前端全链路性能优化</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-10</time></div><div class="article-container" id="post-content"><h2 id="静态资源优化"><a class="markdownIt-Anchor" href="#静态资源优化"></a> 静态资源优化</h2>
+<h3 id="图片优化"><a class="markdownIt-Anchor" href="#图片优化"></a> 图片优化</h3>
+<h4 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h4>
+<ul>
+<li>JPG 一种对彩色图片的有损压缩,不支持透明度,非常适合颜色丰富的图片,彩色图大焦点图，通栏banner图，结构不规则的图形</li>
+<li>PNG 是一种无损压缩的位图模式，支持索引灰度，RGB三种格式以及透明度，因为是无损所以体积大不适合做为彩色大图，适合图标，纯色的。</li>
+<li>GIF 采用8位色(256种颜色) 重现真正的彩色的图像，采用LZW压缩算法进行编码。<br />
+仅支持 完全透明或者完全不透明，适合动画类型的图标（不过一般可能更倾向css完成）</li>
+<li>Webp 现代化图像格式，结合了一部分jpg和png的特点，适合用于图形和半透明图像，8位，颜色不多。</li>
+</ul>
+<h4 id="相关工具"><a class="markdownIt-Anchor" href="#相关工具"></a> 相关工具</h4>
+<ol>
+<li>png压缩</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/node-pngquant-native">https://www.npmjs.com/package/node-pngquant-native</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i node-pngquant-native</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>jpg压缩</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/jpegtran">https://www.npmjs.com/package/jpegtran</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jpegtran</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建议使用的时候 再去网上查查看</p>
+</blockquote>
+<h4 id="图片在网页中显示"><a class="markdownIt-Anchor" href="#图片在网页中显示"></a> 图片在网页中显示</h4>
+<ol>
+<li>控制图片大小</li>
+</ol>
+<ul>
+<li>js事件绑定</li>
+<li>css媒体查询</li>
+<li>img srcset 属性</li>
+</ul>
+<ol start="2">
+<li>图像逐步加重</li>
+</ol>
+<ul>
+<li>统一使用占位符</li>
+<li>使用LQRP 低质量图像占位符</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install lqip </span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用SQIP 基于SVG的低质量图像占位符</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install sqip</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>其他方案</li>
+</ol>
+<ul>
+<li>Web Font</li>
+<li>Data URI (base64)</li>
+<li>image spriting (雪碧图 不推荐)</li>
+</ul>
+<h3 id="html优化"><a class="markdownIt-Anchor" href="#html优化"></a> HTML优化</h3>
+<ul>
+<li>代码压缩</li>
+<li>减少嵌套层数</li>
+</ul>
+<h4 id="文件优化"><a class="markdownIt-Anchor" href="#文件优化"></a> 文件优化</h4>
+<ol>
+<li>CSS文件放在页面头部</li>
+</ol>
+<blockquote>
+<p>CSS的加载不会阻止DOM tree 解析，但是会阻止DOM Tree渲染 ，也会阻止后面JS的执行，放在头部可减少浏览器重排的次数，如果放在底部，就要等待最后一个css下载完成，会出现白屏现象影响用户体验。</p>
+</blockquote>
+<ol start="2">
+<li>JS放在底部</li>
+</ol>
+<ul>
+<li>防止JS的加载解析执行阻塞页面后续元素的正常渲染</li>
+</ul>
+<ol start="3">
+<li>
+<p>建议设置 favicon.ico 图标</p>
+</li>
+<li>
+<p>增加首屏的必要的css 和js ,如骨架屏 <a target="_blank" rel="noopener" href="https://m.weibo.cn/">https://m.weibo.cn/</a></p>
+</li>
+</ol>
+<h4 id="提升css渲染性能"><a class="markdownIt-Anchor" href="#提升css渲染性能"></a> 提升CSS渲染性能</h4>
+<ul>
+<li>谨慎使用 expensive 的属性<br />
+<code>nth-child</code> 伪类;<code>position:fixed</code>定位</li>
+<li>尽量减少样式层数</li>
+<li>避免占用过多cup 如 <code>text-indnt: -9999px</code></li>
+<li>css3 动画或者3D属性 占用GPU</li>
+</ul>
+<h4 id="js优化"><a class="markdownIt-Anchor" href="#js优化"></a> JS优化</h4>
+<ul>
+<li>合理使用缓存</li>
+<li>JS动画优化</li>
+<li>代码优化避免使用eval</li>
+</ul>
+<h4 id="js模块化"><a class="markdownIt-Anchor" href="#js模块化"></a> JS模块化</h4>
+<ol>
+<li>CommonJS</li>
+</ol>
+<blockquote>
+<p>除了web浏览器之外的js,如 NodeJS</p>
+</blockquote>
+<ol start="2">
+<li>AMD (Asynchronous Module Definition) (异步模块定义) 规范<br />
+RequireJS 模块加载器 SeaJS</li>
+<li>CMD模块 通用模块定义,cjs</li>
+<li>ES6 import</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2021/01/10/frontend-optimization/">https://wmwgithub.github.io/2021/01/10/frontend-optimization/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/08/07/design-module-uml/"><i class="fa fa-chevron-left">  </i><span>设计模式-UML图</span></a></div><div class="next-post pull-right"><a href="/2020/12/08/electron-01/"><span>Electron 入门</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

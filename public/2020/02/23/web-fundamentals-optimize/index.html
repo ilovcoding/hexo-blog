@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="浏览器工作原理~优化篇"><meta name="keywords" content="浏览器"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>浏览器工作原理~优化篇 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96css"><span class="toc-number">1.</span> <span class="toc-text"> 优化CSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96javascript"><span class="toc-number">2.</span> <span class="toc-text"> 优化JavaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%89%AB%E6%8F%8Fpreload"><span class="toc-number">3.</span> <span class="toc-text"> 预加载扫描(Preload)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">4.</span> <span class="toc-text"> 最后</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">浏览器工作原理~优化篇</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-02-23</time></div><div class="article-container" id="post-content"><h3 id="优化css"><a class="markdownIt-Anchor" href="#优化css"></a> 优化CSS</h3>
+<p>由之前的原理篇，我们知道浏览器必须要先加载生成DOM和CSSOM才能进行页面渲染，而前端为了适配不同设备可能需要很多css,例如打印设备中显示的css，移动端，网页端不同的css，此时常用的应该是 <code>@media</code> 属性，但是解析越多css，就会越耗时，因此可以把属于某一特性的css单独提取出来,<code>link</code> 引入即可，做到一开始，只下载不解析。如下：浏览器会下载两个样式表 ，但 暂时不会解析 <code>media=&quot;print&quot;</code> 中的样式表</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 浏览器默认加载和解析的css样式表 */</span></span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;xxxx.css&quot; &gt;</span><br><span class="line"><span class="comment">/* 浏览器只在要传向打印设备的时候，才启用的样式表 */</span></span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;xxxx.css&quot; media=&quot;print&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="优化javascript"><a class="markdownIt-Anchor" href="#优化javascript"></a> 优化JavaScript</h3>
+<p>首先压缩文件减少网络传输时间，这一点基本都是大家都适用的，(建议webpack开启生成环境模式，会自动启动js压缩)。</p>
+<p>默认情况下，JavaScript 执行会&quot;阻止DOM解析器&quot;(总之感觉形成RenderTree和运行JS是一个相互阻止的过程，毕竟两者可能对一个产生影响),当浏览器遇到文档中的脚本时，它必须暂停 DOM 构建，将控制权移交给 JavaScript 运行时，让脚本执行完毕，然后再继续构建 DOM。我们在前面的示例中已经见过内联脚本的实用情况。实际上，内联脚本始终会阻止解析器，除非您编写额外代码来推迟它们的执行。</p>
+<p>因此一般都采用 <code>&lt;script src=&quot;xxx.js&quot;&gt;&lt;/script&gt;</code> 引入的方式。<br />
+采用这种方式，虽然JS不影响DOM解析的过程，但是DOM会阻断JS的运行。<br />
+而且如果脚本放在,被执行的元素前，是获取不到该元素的，因此以下代码浏览器会报错。<code>TypeError: Cannot read property 'style' of null</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">		<span class="selector-id">#root</span> &#123;</span></span><br><span class="line">			color: blue;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./index.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span> 我是什么颜色<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- index.js脚本内容  --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- document.getElementById(&#x27;root&#x27;).style.color = &#x27;red&#x27; --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>所以我们想采用异步加载的方式来处理这些问题。</p>
+<ul>
+<li>
+<p>使用window.onload实现js函数异步运行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>).style.color = <span class="string">&#x27;red&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>采用 <code>&lt;script src=&quot;./index.js&quot; async&gt;&lt;/script&gt;</code> 引入脚本</p>
+<p>浏览器遇到async引入的js脚本时候，不会阻止DOM和CSSOM形成过程，同时脚本也不会因为CSS对象而停止执行.</p>
+</li>
+<li>
+<p>采用 <code>&lt;script src=&quot;./index.js&quot; defer&gt;&lt;/script&gt;</code></p>
+<p>脚本标记也可以采用 defer 属性，方法与采用 async 属性相同。差别在于对于 defer，脚本需要等到文档解析后执行，而 async 允许脚本在文档解析时位于后台运行,对于文档中声明的多个defer脚本，会按照下载顺序执行，但是对于async，基本无执行顺序的概念，依次async中存放的代码，一定是互相没有直接引用关系的。</p>
+</li>
+</ul>
+<h3 id="预加载扫描preload"><a class="markdownIt-Anchor" href="#预加载扫描preload"></a> 预加载扫描(Preload)</h3>
+<p>可以指定一些必须的资源，加上 preload 标识,浏览器会优先从服务器获取这些资源</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32561606">知乎关于预加载链接</a></p>
+<h3 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h3>
+<p>优化方法总结如下</p>
+<ul>
+<li>
+<p>资源最小化,采用Gzip进行文本压缩</p>
+</li>
+<li>
+<p>优化CSS</p>
+</li>
+<li>
+<p>采用异步js的方式</p>
+</li>
+<li>
+<p>预加载扫描</p>
+</li>
+<li>
+<p>减小关键路径的长度(critical path),即减少影响页面展示的请求次数</p>
+<ul>
+<li>正确使用HTTP缓存机制</li>
+<li>使用HTTP2.0(一次可获得更多资源，可以减少请求次数，降低握手耗时)</li>
+<li>服务端渲染的方式可以理解成关键路径为1，我得到了html就可以展示页面了，提高了SEO,一定程度上加速了首页显示</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>教程中大多数图片和文字资源来源于Google官网</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2020/02/23/web-fundamentals-optimize/">https://wmwgithub.github.io/2020/02/23/web-fundamentals-optimize/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/02/23/webpack/"><i class="fa fa-chevron-left">  </i><span>Webpack教程~基础篇</span></a></div><div class="next-post pull-right"><a href="/2020/02/22/validate-stack-sequences/"><span>栈的压入、弹出序列</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

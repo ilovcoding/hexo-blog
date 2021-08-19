@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="博客搭建过程"><meta name="keywords" content="搭建博客"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>博客搭建过程 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo%E7%8E%AF%E5%A2%83%E9%BB%98%E8%AE%A4winddows-macos%E5%92%8Clinux%E8%87%AA%E8%A1%8C%E6%90%9C%E7%B4%A2%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85nodejs"><span class="toc-number">1.</span> <span class="toc-text"> 安装Hexo环境(默认winddows MacOS和Linux自行搜索如何安装Node.JS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text"> 安装主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E5%B8%96%E5%AD%90"><span class="toc-number">3.</span> <span class="toc-text"> 创建新帖子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%96%E5%AD%90%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83%E5%88%B0github"><span class="toc-number">4.</span> <span class="toc-text"> 帖子打包发布到GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD"><span class="toc-number">5.</span> <span class="toc-text"> 添加评论功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">6.</span> <span class="toc-text"> 写在最后</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">博客搭建过程</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-27</time></div><div class="article-container" id="post-content"><h2 id="安装hexo环境默认winddows-macos和linux自行搜索如何安装nodejs"><a class="markdownIt-Anchor" href="#安装hexo环境默认winddows-macos和linux自行搜索如何安装nodejs"></a> 安装Hexo环境(默认winddows MacOS和Linux自行搜索如何安装Node.JS)</h2>
+<blockquote>
+<p>当然要安装其他博客主题或者基于GitHub构建博客不可或缺的工具就是<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a>这个管理工具,所以建议先安装Git</p>
+</blockquote>
+<blockquote>
+<p>Hexo基于JavaScript,采用npm包管理器管理插件,安装Hexo需要先安装<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">npm</a>和<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">Node.JS</a>;推荐下载LTS版本的Node.JS。</p>
+</blockquote>
+<ul>
+<li><code>cmd</code>中运行命令<code>git --version</code> <code>node -v</code> <code>npm -v</code> 出现对应的版本号说明安装成功</li>
+<li><code>cmd</code> 运行命令 <code>npm install hexo-cli -g</code> 安装Hexo脚手架工具,可参看官网<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">概述</a>,<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">建站</a>的过程</li>
+<li>例如</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo  init test</span><br><span class="line">cd test</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><img src="http://blogimage.lemonlife.top/201910301359_423.png" alt="安装Hexo" /></p>
+<h2 id="安装主题"><a class="markdownIt-Anchor" href="#安装主题"></a> 安装主题</h2>
+<blockquote>
+<p>我选择的是melody个人觉得这款主题真的很好看用起来也很方便。<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody/tree/fca917dd321bcda46b2a7dcddcf18cbe408cff18">主题GitHub地址</a></p>
+</blockquote>
+<ul>
+<li>例如(首先保障一下命令都是在上一步创建的test文件夹里面的)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master https:&#x2F;&#x2F;github.com&#x2F;Molunerfinn&#x2F;hexo-theme-melody themes&#x2F;melody</span><br><span class="line">npm install hexo-renderer-jade hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
+<p><img src="http://blogimage.lemonlife.top/201910302300_80.png?/" alt="安装主题" /></p>
+<ul>
+<li>修改配置文件，使用先安装的主题</li>
+</ul>
+<p>修改test文件夹里面的<code>_config.yml</code>的文件的<code>theme landspcape</code>改成<code>theme melody</code>然后运行<code>hexo server</code>启动项目<br />
+<img src="http://blogimage.lemonlife.top/201910302301_62.png?/" alt="修改配置文件" /></p>
+<h2 id="创建新帖子"><a class="markdownIt-Anchor" href="#创建新帖子"></a> 创建新帖子</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="帖子打包发布到github"><a class="markdownIt-Anchor" href="#帖子打包发布到github"></a> 帖子打包发布到GitHub</h2>
+<blockquote>
+<p>首先确保自己电脑的GitHub ssh秘钥已经配置正确</p>
+</blockquote>
+<ul>
+<li>先运行 <code>npm install hexo-deployer-git --save</code> 安装插件</li>
+<li>修改<code>_config.yml</code>文件，在文件添加</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: GitHub地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行 <code>hexo generate</code> 生成部署文件到public文件夹</li>
+<li>运行 <code>hexo deploy</code> 部署到相应的仓库</li>
+</ul>
+<!-- > 注意下次部署 可以直接运行 `hexo generate` 然后到`.deploy_git`目录中手动提交 -->
+<h2 id="添加评论功能"><a class="markdownIt-Anchor" href="#添加评论功能"></a> 添加评论功能</h2>
+<ol>
+<li>进入主题的插件管理网站的<a target="_blank" rel="noopener" href="https://molunerfinn.com/hexo-theme-melody-doc/third-party-support.html#comments">评论插件展示版块</a>,这边有很多评论版块，我使用的是<code>Gittalk</code></li>
+<li>如果使用GitHub相关评论工具需要在 <a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">GitHub官网</a>注册一个 OAuth application <code>Homepage URL</code>和 <code>Authorization callback URL</code>都可填你的博客域名,其他评论工具我没有使用过</li>
+<li>修改 <code>source/_data/melody.yml</code>文件，其中<code>client_id client_secret</code> 字段是之前注册生成的 <code>admin</code>字段就写自己的GitHub名字(数组形式：[‘张三’]) 如果博客是共同管理的把其他成员也写进去即可：[‘张三’,‘李四’]。</li>
+</ol>
+<h2 id="写在最后"><a class="markdownIt-Anchor" href="#写在最后"></a> 写在最后</h2>
+<blockquote>
+<p>更多melody主题的用法，参看<a target="_blank" rel="noopener" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans/">中文文档</a>;最后再次感谢一下melody的作者</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2019/07/27/init/">https://wmwgithub.github.io/2019/07/27/init/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">搭建博客</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/07/30/git-use-method/"><i class="fa fa-chevron-left">  </i><span>Git使用方法</span></a></div><div class="next-post pull-right"><a href="/2019/07/27/rank-method/"><span>排序算法[转载]</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

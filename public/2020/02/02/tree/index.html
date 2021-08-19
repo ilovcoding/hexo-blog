@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="树"><meta name="keywords" content="算法与数据结构,树"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>树 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91tree"><span class="toc-number">1.</span> <span class="toc-text"> 树(Tree)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text"> 基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91binary-tree"><span class="toc-number">1.2.</span> <span class="toc-text"> 二叉树(Binary Tree)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%82%A8%E5%AD%98"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 二叉树的储存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 二叉树遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 二叉查找树时间复杂度分析</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">树</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-02-02</time></div><div class="article-container" id="post-content"><h2 id="树tree"><a class="markdownIt-Anchor" href="#树tree"></a> 树(Tree)</h2>
+<h3 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h3>
+<ul>
+<li>
+<p>介绍</p>
+<blockquote>
+<p>树(Tree)是基础数据结构的一种, 树中的每一个元素称作节点,节点与节点之间有兄弟节点,父子节点这两种。兄弟节点之间不直接相连。我们把没有子节点的节点叫做叶子节点。</p>
+</blockquote>
+</li>
+<li>
+<p>节点的高度</p>
+<blockquote>
+<p>节点到叶子节点最长的路径(边数)</p>
+</blockquote>
+</li>
+<li>
+<p>节点的深度</p>
+<blockquote>
+<p>节点到根节点所经历的边的个数</p>
+</blockquote>
+</li>
+<li>
+<p>节点的层数</p>
+<blockquote>
+<p><code>节点的深度+1</code> 因为根节点的层数是1。</p>
+</blockquote>
+</li>
+<li>
+<p>树的高度</p>
+<blockquote>
+<p>根节点的高度,或者其他节点的节点高度和节点深度之和。</p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202002021232_96.png?/" alt="来源：极客时间-数据结构之美专题" /></p>
+</li>
+</ul>
+<h3 id="二叉树binary-tree"><a class="markdownIt-Anchor" href="#二叉树binary-tree"></a> 二叉树(Binary Tree)</h3>
+<ul>
+<li>
+<p>介绍</p>
+<blockquote>
+<p>树的每个节点最多含有两个子节点。分别是左节点和右节点，并不要求每个节点都含有左右节点，有的节点只有左节点，有的节点只有右节</p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202002021248_678.png?/" alt="来源：极客时间-数据结构算法之美" /></p>
+</li>
+<li>
+<p>满二叉树</p>
+<blockquote>
+<p>叶子节点都在树的最底层;且除了叶子节点外,其他节点都有左右两个子节点。</p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202002021249_40.png?/" alt="来源：极客时间-数据结构算法之美" /></p>
+</li>
+<li>
+<p>完全二叉树</p>
+<blockquote>
+<p>叶子节点在最后两层，最后一层的叶子节点都靠左并且除了最后一层其他层构成满二叉树。<br />
+<img src="http://blogimage.lemonlife.top/202002021252_81.png?/" alt="来源：极客时间-数据结构算法之美" /></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="二叉树的储存"><a class="markdownIt-Anchor" href="#二叉树的储存"></a> 二叉树的储存</h4>
+<pre><code>树作为一种基础的数据结构,存储方式有直观的 链式储存 和用 数组存储 两种。
+1. 链式存储法,每个节点有三个字段,其中一个储存数据,另外两个分别指向左右两个节点。
+2. 数组的顺序存储法,是把跟节点存在下标 i=1 的位置(i=0暂时为空)。把i节点左节点存在2*i的位置,右节点存在2*i+1的位置。这一存储方式比较适合满二叉树和完全二叉树。用于其他类型的容易造成空间的浪费。
+</code></pre>
+<p><img src="http://blogimage.lemonlife.top/202002031112_287.png?/" alt="链式存储法" /><br />
+<img src="http://blogimage.lemonlife.top/202002031118_599.png?/" alt="数组的顺序存储法" /></p>
+<h4 id="二叉树遍历"><a class="markdownIt-Anchor" href="#二叉树遍历"></a> 二叉树遍历</h4>
+<ul>
+<li>
+<p>前序遍历</p>
+<blockquote>
+<p>对于某个节点先遍历这个节点,再遍历左节点，最后遍历右节点。</p>
+</blockquote>
+</li>
+<li>
+<p>中序遍历</p>
+<blockquote>
+<p>先遍历左节点再遍历这个节点本身，最后遍历有节点</p>
+</blockquote>
+</li>
+<li>
+<p>后序遍历</p>
+<blockquote>
+<p>先遍历左节点再遍历右节点,最后遍历这个节点本身。</p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202002021348_774.png?/" alt="来源：极客时间-数据结构算法之美" /></p>
+</li>
+</ul>
+<p><strong>递归模式遍历</strong></p>
+<p>前序遍历的递推公式：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(Node* root)</span> </span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">   print root <span class="comment">// 此处为伪代码，表示打印 root 节点 </span></span><br><span class="line">   preOrder(root-&gt;left); </span><br><span class="line">   preOrder(root-&gt;right);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>中序遍历的递推公式：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(Node* root)</span> </span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span>; </span><br><span class="line">  inOrder(root-&gt;left);</span><br><span class="line">  print root <span class="comment">// 此处为伪代码，表示打印 root 节点 </span></span><br><span class="line">  inOrder(root-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后序遍历的递推公式：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(Node* root)</span> </span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span>; </span><br><span class="line">  postOrder(root-&gt;left); </span><br><span class="line">  postOrder(root-&gt;right); </span><br><span class="line">  print root <span class="comment">// 此处为伪代码，表示打印 root 节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>迭代模式遍历</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">  &#96;&#96;&#96;</span><br><span class="line">### 二叉查找树(Binary Search Tree)</span><br><span class="line">  &gt;二叉查找树要求,在树的任意一个节点,在其左节点的值都要小于该节点的值,在其右节点的值都要大于该节点的值,因此二叉查找树实现快速查找,并且还支持数据的快速插入或删除。</span><br><span class="line">  - 查找过程</span><br><span class="line">     </span><br><span class="line">    先和根节点比较,如果要查找的值小于根节点则在左子树中查找,否则在右子树中查找依此类推。</span><br><span class="line">    &#96;&#96;&#96;Java</span><br><span class="line">    public class SearchTree &#123;</span><br><span class="line">      public static class Node&#123;</span><br><span class="line">          private int data;</span><br><span class="line">          private Node left;</span><br><span class="line">          private Node right;</span><br><span class="line">          public Node(int data)&#123;</span><br><span class="line">              this.data &#x3D; data;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      private Node tree;</span><br><span class="line">      public Node find(int data)&#123;</span><br><span class="line">          Node t &#x3D; tree;</span><br><span class="line">          while (t!&#x3D;null)&#123;</span><br><span class="line">              if(data&lt;t.data)&#123;</span><br><span class="line">                  t&#x3D;t.left;</span><br><span class="line">              &#125; else if(data&gt;t.data) &#123;</span><br><span class="line">                  t&#x3D;t.right;</span><br><span class="line">              &#125; else &#123;</span><br><span class="line">                return t;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          return null;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>![二叉查找树查找过程](http://blogimage.lemonlife.top/202002021921_337.png?/)
+</code></pre>
+<ul>
+<li>
+<p>插入过程</p>
+<blockquote>
+<p>二叉查找树新插入的数据一般在叶子节点上,从根节点开始,如果要插入的数比节点数据小并且节点左子树为空，则将新插入的数据放到该节点左子节点的位置。如果左子树不为空依次递归遍历左子树。同样如果要插入的数据大于节点数据。对节点的右子树同样操作即可。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> data,Node tree)</span></span>&#123;</span><br><span class="line">Node indexNode = tree;</span><br><span class="line"><span class="keyword">while</span>(indexNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(data &gt;= indexNode.data)&#123;</span><br><span class="line">        <span class="keyword">if</span>(indexNode.right == <span class="keyword">null</span>)&#123;</span><br><span class="line">            indexNode.right = <span class="keyword">new</span> Node(data);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        indexNode = indexNode.right;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(data&lt;indexNode.data) &#123;</span><br><span class="line">        <span class="keyword">if</span>(indexNode.left == <span class="keyword">null</span>)&#123;</span><br><span class="line">            indexNode.left == <span class="keyword">new</span> Node(data);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        indexNode = indexNode.left;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://blogimage.lemonlife.top/202002021953_674.png?/" alt="插入" /></p>
+</li>
+<li>
+<p>删除过程</p>
+</li>
+</ul>
+<blockquote>
+<p>二叉查找树删除过程相对于查找和插入来说比较麻烦。有三种情况<br />
+<img src="http://blogimage.lemonlife.top/202002022219_211.png?/" alt="" /><br />
+1. 如果要删除节点没有子节点我们只需要直接将父节点中指向该节点的指针指向<code>null</code>即可。比如删除图中节点55。<br/><br />
+2. 如果要删除的节点有一个节点(一个左节点或者一个右节点)，只需要将父节点的指针指向要删除节点的子节点即可。比如删除图中节点13<br/><br />
+3. 如果要删除的节点含有两个子节点。我们找到该节点的右子树中最小的节点。把他替换到要删除的节点上。比如删除图中节点18</p>
+</blockquote>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///这部分感觉教程上代码有问题 先欠着以后补上。</span></span><br></pre></td></tr></table></figure>
+<h4 id="二叉查找树时间复杂度分析"><a class="markdownIt-Anchor" href="#二叉查找树时间复杂度分析"></a> 二叉查找树时间复杂度分析</h4>
+<blockquote>
+<p>二叉查找树执行查找的效率和数的高度成正比O(height),因此树的形状(树的左右平衡程度有关)会影响查询时间。<br/><br />
+1. 最坏的程度一棵树可以退化成链表查,一个含有n个节点的树,树的高度就是n。找时间复杂度为 <code>O(n)</code> <br/><br />
+2. 当二叉树的平衡情况最好时(满二叉树或者平衡二叉树)。一个含有n个节点的树高度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">log_2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span></span></span></span><br/><br />
+n=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><msup><mn>2</mn><mrow><mi>L</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mn>2</mn><mi>L</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^0+2^1+2^2+\cdots+2^{L-1}=2^L-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">L</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">L</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> (L代表树的高度)</br><br />
+查找的时间复杂度为O(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">log_2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span></span></span></span>)</p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202002031131_882.png?/" alt="二叉查找树的情况" /></p>
+<blockquote>
+<p>文章中图片和部分文字代码片段来源 <code>极客时间-数据结构与算法之美</code></p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2020/02/02/tree/">https://wmwgithub.github.io/2020/02/02/tree/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a><a class="post-meta__tags" href="/tags/%E6%A0%91/">树</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/02/04/reConstructBinaryTree/"><i class="fa fa-chevron-left">  </i><span>重建二叉树</span></a></div><div class="next-post pull-right"><a href="/2020/02/01/java-concurrent-programming/"><span>Java并发编程的基础</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

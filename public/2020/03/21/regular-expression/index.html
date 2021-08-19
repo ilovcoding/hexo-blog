@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="正则表达式"><meta name="keywords" content="正则表达式"><meta name="author" content="琅琊旻"><meta name="copyright" content="琅琊旻"><title>正则表达式 | 琅琊旻</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-1150529212462758',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66535930";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%86%99%E6%B3%95%E5%92%8C%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.1.</span> <span class="toc-text"> 基本写法和修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6es5%E4%B8%AD%E5%8F%AA%E6%9C%89igm%E4%B9%9F%E6%98%AF%E6%AF%94%E8%BE%83%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 对于修饰符ES5中只有igm也是比较常用的三种。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#es6%E6%96%B0%E5%A2%9Eu%E5%92%8Cy%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text"> ES6新增u和y修饰符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9A%82%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84s%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 暂不支持的s修饰符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text"> 其他语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%84%E5%90%88%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text"> 常见的一些组合语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84"><span class="toc-number">2.1.</span> <span class="toc-text"> 分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E4%BA%8E%E9%9D%9E%E6%8D%95%E8%8E%B7"><span class="toc-number">2.2.</span> <span class="toc-text"> 捕获于非捕获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E9%A1%B9%E6%9F%A5%E6%89%BE"><span class="toc-number">2.3.</span> <span class="toc-text"> 前项查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E9%A1%B9%E6%9F%A5%E6%89%BE"><span class="toc-number">2.4.</span> <span class="toc-text"> 后项查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%A4%84%E7%90%86"><span class="toc-number">2.5.</span> <span class="toc-text"> 逻辑处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%96"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 或 |,[]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 非 [^],!</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fjs%E5%BA%94%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text"> 正则表达式JS应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%8D%83%E5%88%86%E4%BD%8D"><span class="toc-number">3.1.</span> <span class="toc-text"> 匹配千分位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-number">3.2.</span> <span class="toc-text"> window操作系统文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8C%E5%AF%86%E7%A0%81"><span class="toc-number">3.3.</span> <span class="toc-text"> 校验密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E6%97%A5%E6%9C%9F"><span class="toc-number">3.4.</span> <span class="toc-text"> 匹配日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%AF%8D%E9%A6%96%E5%AD%97%E6%AF%8D%E8%BD%AC%E6%88%90%E5%A4%A7%E5%86%99"><span class="toc-number">3.5.</span> <span class="toc-text"> 单词首字母转成大写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8Dipv4%E5%9C%B0%E5%9D%80"><span class="toc-number">3.6.</span> <span class="toc-text"> 匹配IPv4地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%9B%BD%E5%86%85%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7"><span class="toc-number">3.7.</span> <span class="toc-text"> 匹配国内身份证号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%9B%BD%E5%86%85%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81"><span class="toc-number">3.8.</span> <span class="toc-text"> 匹配国内手机号码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%A7%E6%9C%BA%E5%8F%B7%E7%A0%81%E5%8C%B9%E9%85%8D"><span class="toc-number">3.9.</span> <span class="toc-text"> 座机号码匹配</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://blogimage.lemonlife.top/201910302316_962.jpg"></div><div class="author-info__name text-center">琅琊旻</div><div class="author-info__description text-center"></div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/wmwgithub">GitHub关注</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.dzou.top">Dzou's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://boyn.top">Boyn</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://www.parak.top/">ParaK</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="http://luo-xi.xyz/">洛臣心</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.uchihakakashi.top/">Uchkks's Blog</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://crassulalactea.github.io/">Crassula</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">琅琊旻</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">正则表达式</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-21</time></div><div class="article-container" id="post-content"><blockquote>
+<p>做自己喜欢的事保持进步。</p>
+</blockquote>
+<p>首先推荐两个网址，<a target="_blank" rel="noopener" href="https://jex.im/regulex/#!flags=&amp;re=%5E(a%7Cb)*%3F%24">用图形化解释你写的正则</a>,<a target="_blank" rel="noopener" href="https://regexr.com/">很方便测试正则的网站</a></p>
+<p>正则表达式基础可参看<a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">菜鸟教程~正则表达式</a>,后面本文中的基础语法只是对教程中的一些解释。推荐用一小时过一遍菜鸟教程，再继续看下文。</p>
+<h2 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h2>
+<p>你可以把正则表达式，看成是一门编程语言，其中有一些字符，就是规定了一些基础的语法，像JavaScript的 <code>function</code> 表示函数，<code>let</code>声明变量,用 <code>+ - * / ()</code> 表示四则运算一样。</p>
+<h3 id="基本写法和修饰符"><a class="markdownIt-Anchor" href="#基本写法和修饰符"></a> 基本写法和修饰符</h3>
+<p>可以直接采用 <code>/正则表达式/修饰符</code> 这种,把正则表达式直接写在<code>//</code> 注释符号双斜杠中间，或者采用ES6的 <code>RegExp(&quot;正则表达式&quot;,&quot;修饰符&quot;)</code> 的形式(ES5,也有RegExp,不过没有第二个参数)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;xyz&#x27;</span>,<span class="string">&#x27;i&#x27;</span>)</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">/xyz/i</span><br><span class="line"><span class="comment">//等价于ES5中的</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;/xyz/i&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="对于修饰符es5中只有igm也是比较常用的三种"><a class="markdownIt-Anchor" href="#对于修饰符es5中只有igm也是比较常用的三种"></a> 对于修饰符ES5中只有<code>igm</code>也是比较常用的三种。</h4>
+<blockquote>
+<p><code>i</code>表示不区分匹配的大小写，即 <code>a</code> 可以匹配到<code>A或a</code></p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202003231105_156.png?/" alt="区分大小写匹配" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003231106_287.png?/" alt="不区分大小写匹配" /></p>
+<blockquote>
+<p><code>g</code> 表示全局匹配，有点递归执行函数的意思。</p>
+</blockquote>
+<p>如果用<code>/a/i</code> 匹配Aa,从上图可知匹配到 <code>A</code> 后，正则函数将不再继续向后执行。如果使用<code>/a/ig</code> ,匹配到<code>A</code>后将继续向后执行,匹配到a。两次匹配是相互独立的，每次匹配的结果都存在数组里面最后返回 [A,a]</p>
+<p><img src="http://blogimage.lemonlife.top/202003231110_791.png?/" alt="全局匹配" /></p>
+<blockquote>
+<p><code>m</code> 表示,多行(multiline)匹配。你可能会想 <code>g</code> 全局匹配吗？为什么还要多行匹配呢？</p>
+</blockquote>
+<p>可以看到下图中通过g的全局匹配，我们的确匹配到了多行文本中所有的Aa(图中红色箭头是指换行符可以用<code>\x0a</code>匹配)。</p>
+<p><img src="http://blogimage.lemonlife.top/202003231132_796.png?/" alt="" /></p>
+<p>现在分析一下 <code>/^Aa\x0a/g</code> 这个表达式。猜猜这个会匹配到什么？(^表示必须以A字符开头)。首先肯定可以匹配到第一行的Aa。对于第二行和第三行的字符还能匹配到吗？<br />
+<img src="http://blogimage.lemonlife.top/202003231153_510.png?/" alt="" /></p>
+<p>当我们全局扫描到第一行时匹配到了<code>Aa\n</code> (\n 表示末尾的换行符哈),但是我们接着往下继续扫描时候，正则表达式还记着我的第一行还有东西呢，因此再后面匹配的时候，正则表达式发现，开始的字符就不是A了，于是就停止了匹配。</p>
+<p>如果我们加上m修饰符，能让正则表达式变成一个健忘症患者，忘记上一行的内容。那么 <code>/^Aa\x0a/gm</code> 就会是像下面这样</p>
+<ul>
+<li>
+<p>第一次表达式面对的文本(\n表示换行符)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Aa\n</span><br><span class="line">Aa\n</span><br><span class="line">Aa\n</span><br></pre></td></tr></table></figure>
+<p>匹配到<code>Aa\n</code></p>
+</li>
+<li>
+<p>第二次表达式面对的文本，(忘掉了第一行)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Aa\n</span><br><span class="line">Aa\n</span><br></pre></td></tr></table></figure>
+<p>匹配到<code>Aa\n</code></p>
+</li>
+<li>
+<p>第三次表达式面对的文本，(忘掉了前两行)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Aa\n</span><br></pre></td></tr></table></figure>
+<p>匹配到<code>Aa\n</code></p>
+</li>
+</ul>
+<p>所以最后我们可以看到，又成功的匹配到了三行以A开始的文本<br />
+<img src="http://blogimage.lemonlife.top/202003231204_357.png?/" alt="" /></p>
+<p>下面继续分析通过<code>/^Aa\x0a$/m</code>(表示字符串必须已A开始换行符结束，中间是a)，匹配相同的文本，结果又是什么？</p>
+<p>从上面的的分析可知，第一次正则表达式面对的是三行完整的文字，的确是A开始但是后面不满足,中间是a,结尾是换行符的条件。同样面对第二行时，也不满足条件。直到面对第三行文本的时候(此时忘记了前两行了)，刚刚好就是 <code>Aa\n</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003231212_614.png?/" alt="" /></p>
+<h4 id="es6新增u和y修饰符"><a class="markdownIt-Anchor" href="#es6新增u和y修饰符"></a> ES6新增u和y修饰符</h4>
+<blockquote>
+<p>u 修饰符是针对Unicode编码的,</p>
+</blockquote>
+<p>为了让正则表达式能正确处理四个字节的 UTF-16 编码.类似于(<code>\ud83d\ude18</code>) 。 ES5 不支持四个字节的 UTF-16 编码，会将其识别为两个字符。直接来图吧。</p>
+<p><img src="http://blogimage.lemonlife.top/202003231605_990.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003231607_852.png?/" alt="" /></p>
+<p>对比上面两个图, 可以先说明一下表情😘对应的Unicode编码就是 <code>\ud83d\ude18</code>,正则表达式最初的意思就是想匹配最开始的😘。<br />
+可是你会发现，什么情况 /^\ud83d/ 为啥也命中了这个表情，很明显就是在没有指定u修饰符的情况下，ES5 把 😘 这个可爱的表情拆成了，两个字符 <code>\ud83d</code> 和 <code>\ude18</code>。</p>
+<p><img src="http://blogimage.lemonlife.top/202003231613_459.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003231613_746.png?/" alt="" /></p>
+<p>果然我们加上u修饰符之后,只有<code>\ud83d\ude18</code>能匹配到 😘 了。</p>
+<blockquote>
+<p>除了u修饰符，ES6 还为正则表达式添加了y修饰符，叫做“粘连”（sticky）修饰符。</p>
+</blockquote>
+<p>前面说过正则有点递归调用的意思，g修饰符每次进行新的调用的时候，不用在意字符串的位置，而y修饰符相当于每次都在正则表达式上加了一个 <code>^</code> 指定了，必须是开始第一个。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;AaAaAa&quot;</span></span><br><span class="line"><span class="keyword">let</span> rg = <span class="regexp">/A/g</span></span><br><span class="line"><span class="keyword">let</span> ry = <span class="regexp">/A/y</span></span><br><span class="line"><span class="keyword">let</span> ryAa = <span class="regexp">/Aa/y</span></span><br></pre></td></tr></table></figure>
+<p>执行 <code>rg.exec(str)</code> ,可以看到字符串中的三个A都被匹配到了</p>
+<p><img src="http://blogimage.lemonlife.top/202003231635_501.png?/" alt="" /></p>
+<p>执行 <code>ry.exec(str)</code> ,可以看到字符串中只有第一个A被匹配到了,因为y修饰符的原因，第一次执行的时候相当于<code>/^A/</code>去匹配，匹配完之后剩下字符串aAaAa,然后<code>/^A/</code> 再去匹配。然后就什么都匹配不到了</p>
+<p><img src="http://blogimage.lemonlife.top/202003231640_48.png?/" alt="" /></p>
+<p>执行 <code>ryAa.exec(str)</code> ,可以看到每次都拿/Aa/y去匹配，相当于/^Aa/,然后三个Aa就都匹配到了。</p>
+<p><img src="http://blogimage.lemonlife.top/202003231649_959.png?/" alt="" /></p>
+<h4 id="暂不支持的s修饰符"><a class="markdownIt-Anchor" href="#暂不支持的s修饰符"></a> 暂不支持的s修饰符</h4>
+<blockquote>
+<p><code>s</code>修饰符(single)，意思是无论文本中有没有换行符，统一把这些文本当成一行。</p>
+</blockquote>
+<p><strong>友情提示一下s修饰符，现在的浏览器可能都不能支持,应该是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/PCRE/7401536?fr=aladdin">PCRE</a>和ES2018 引入的语法</strong></p>
+<p>这个修饰符与 multiline 有点相反的意思。下面我们来演示一种场景。先补充一个知识 <code>.*</code> 表示贪婪匹配，可以匹配到除换行符之外的任意字符。</p>
+<p>定义 <code>/A.*a/g</code> 正则表达式，易知该正则表达式意思是：匹配任意位置A开始，中间可以是任何字符，最后遇到a结束。来匹配下面文本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Axxxyyya</span><br></pre></td></tr></table></figure>
+<p>易知 上面的文本可以被完整的匹配。(即 会匹配到 Axxxyyya)</p>
+<p><img src="http://blogimage.lemonlife.top/202003231418_437.png?/" alt="" /></p>
+<p>如果我们把文本改成下面这个多行，会怎么样呢？正则表达式不变，还能匹配到所有文字吗？(注意上面贪婪匹配的定义)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A</span><br><span class="line">xxx</span><br><span class="line">yyy</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<p><img src="http://blogimage.lemonlife.top/202003231427_174.png?/" alt="" /></p>
+<p><code>/A.*a/gs</code> 正则表达式改成这样会怎么样呢。不想解释了直接看图吧，看完就知道s修饰符大概怎么用了🐶</p>
+<p><img src="http://blogimage.lemonlife.top/202003231429_130.png?/" alt="" /></p>
+<h3 id="其他语法"><a class="markdownIt-Anchor" href="#其他语法"></a> 其他语法</h3>
+<blockquote>
+<p>特殊字符，限定符之类的直接从 <a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">菜鸟教程</a> 截图了。</p>
+</blockquote>
+<p><img src="http://blogimage.lemonlife.top/202003231717_753.png?/" alt="特殊字符" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003231718_930.png?/" alt="限定符" /></p>
+<p>有一点想说明一下，菜鸟教程中有说，对于一些相当于是编程语言中的保留字，概念的一些正则关键字。(\n 换行符,\t制表符，\v,垂直制表符，空格，{, 以及html左标签&lt;等…这些都是不用记的)。 对于这些特殊字符都是<a target="_blank" rel="noopener" href="https://tool.oschina.net/commons?type=4">ASCII码表</a>里面有的。可以统一采用<code>\x16进制的ASCII</code>表示,比如<code>\x0a</code>表示换行符，<code>\x20</code> 匹配空格,<code>\x20*</code> 匹配任意个数的空格等。</p>
+<p><strong>补充：边界匹配</strong><br />
+<code>/\bCha/</code>  匹配句子中的单词,且这个单词必须要以Cha开始。(Chapter)</p>
+<p><code>/ter\b/</code> 匹配句子中的单词,且这个单词必须要以ter结束。(Chapter)</p>
+<p><code>/\Bapt/</code> 匹配句子中的单词，且这个单词中间必须要有，apt字符。(可以匹配Chapter ，但是不能匹配 aptitude 因为这个单词中apt出现在，开始不再单词中间)</p>
+<h2 id="常见的一些组合语法"><a class="markdownIt-Anchor" href="#常见的一些组合语法"></a> 常见的一些组合语法</h2>
+<h3 id="分组"><a class="markdownIt-Anchor" href="#分组"></a> 分组</h3>
+<p>正则表达式通过()进行分组，主要使用场景是在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace">JavaScript replace函数中</a>,</p>
+<p>可以看到下图中 <code>/(\w+)\s(\w+)/ig</code> 根据(),将这些元素分成了两组, 然后依次对应着JS replace函数中的<code>$1,$2...</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003241114_203.png?/" alt="" /></p>
+<ul>
+<li>字符串前后两两交换位置</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;Talk is cheap show me the code&#x27;</span></span><br><span class="line">str.replace(<span class="regexp">/(\w+)\s(\w+)/ig</span>,<span class="function">(<span class="params">_,p1,p2</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;p2&#125;</span> <span class="subst">$&#123;p1&#125;</span>`</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// is Talk show cheap the me code</span></span><br></pre></td></tr></table></figure>
+<h3 id="捕获于非捕获"><a class="markdownIt-Anchor" href="#捕获于非捕获"></a> 捕获于非捕获</h3>
+<p>在JavaScript中我们采用$1,$2…，依次获取每个()表达式中匹配到的文本，同样用\1\2…依次引用，正则表达式中()匹配到的文本，我们把这种行为称为捕获。看图</p>
+<p><img src="http://blogimage.lemonlife.top/202003251109_562.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251109_87.png?/" alt="" /></p>
+<p>如果我们不想让某一个()表达式中的内容被捕获，这个过程就称为非捕获，非捕获表达式(?:xxx),如上我们将正则表达式中的 <code>(two)</code> 改成 <code>(?:two)</code> 此时依然要匹配 <code>one,two,three,one,three</code>,应该把<code>\3</code> 改成<code>\2</code>,因为此时<code>two</code> 不会被捕获,<code>\2</code>从之前对应two变成对应three，看图就行</p>
+<p><img src="http://blogimage.lemonlife.top/202003251131_298.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251133_381.png?/" alt="" /></p>
+<h3 id="前项查找"><a class="markdownIt-Anchor" href="#前项查找"></a> 前项查找</h3>
+<p>形如 <code>待查找字符(?=&quot;查找条件)</code>, 我们把<code>(?=xxx)</code> 这种格式的式子称作条件表达式，一般我们把想要查找的字符放在，条件表达式前面。因此称为前项查找。</p>
+<p><img src="http://blogimage.lemonlife.top/202003241237_799.png?/" alt="/lo(?=ck)/g" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003241240_909.png?/" alt="" /></p>
+<ul>
+<li>否定前项查找，即对条件取反的操作</li>
+</ul>
+<p><img src="http://blogimage.lemonlife.top/202003241243_836.png?/" alt="/lo(?!ck)/g" /><br />
+<img src="http://blogimage.lemonlife.top/202003241244_917.png?/" alt="" /></p>
+<h3 id="后项查找"><a class="markdownIt-Anchor" href="#后项查找"></a> 后项查找</h3>
+<p>同上 给两个单词，<code>condition</code>,<code>action</code>，同样只是条件表达式形式不一样，而且带查找字符，要放在条件表达式 <code>(?&lt;=xxx)</code> 后面。</p>
+<p><img src="http://blogimage.lemonlife.top/202003241252_467.png?/" alt="/(?&lt;=ac)tion/g" /></p>
+<ul>
+<li>否定后项查找</li>
+</ul>
+<p><img src="http://blogimage.lemonlife.top/202003241253_914.png?/" alt="/(?&lt;!ac)tion/g" /></p>
+<h3 id="逻辑处理"><a class="markdownIt-Anchor" href="#逻辑处理"></a> 逻辑处理</h3>
+<h4 id="或"><a class="markdownIt-Anchor" href="#或"></a> 或 |,[]</h4>
+<p>匹配 字符串 “tea,ten,test,term”。</p>
+<p><img src="http://blogimage.lemonlife.top/202003241258_125.png?/" alt="/te(a|n|st|rm)/g" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003241259_312.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003241301_229.png?/" alt="/te[anstrm]/g" /><br />
+<img src="http://blogimage.lemonlife.top/202003241301_614.png?/" alt="" /></p>
+<h4 id="非"><a class="markdownIt-Anchor" href="#非"></a> 非 [^],!</h4>
+<p><img src="http://blogimage.lemonlife.top/202003241304_922.png?/" alt="/te[^ans]/g" /><br />
+<img src="http://blogimage.lemonlife.top/202003241304_809.png?/" alt="" /></p>
+<p>!操作，参看前面的前向查找和后项查找</p>
+<h2 id="正则表达式js应用"><a class="markdownIt-Anchor" href="#正则表达式js应用"></a> 正则表达式JS应用</h2>
+<blockquote>
+<p>部分案例来源于<a target="_blank" rel="noopener" href="https://github.com/qdlaoyao/js-regex-mini-book">JS 正则迷你书</a>,以及<a target="_blank" rel="noopener" href="https://juejin.im/post/5965943ff265da6c30653879">该书掘金地址</a></p>
+</blockquote>
+<h3 id="匹配千分位"><a class="markdownIt-Anchor" href="#匹配千分位"></a> 匹配千分位</h3>
+<ul>
+<li>解法1</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">thousands</span>(<span class="params">num, sep</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(num)</span><br><span class="line">  <span class="keyword">const</span> arr = str.split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="regexp">/(\d+)(\d&#123;3&#125;)/</span></span><br><span class="line">  <span class="keyword">let</span> integer = arr[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">let</span> decimal = arr.length &gt; <span class="number">1</span> ? <span class="string">`.<span class="subst">$&#123;arr[<span class="number">1</span>]&#125;</span>`</span> : <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">while</span> (reg.test(integer)) &#123;</span><br><span class="line">    integer = integer.replace(reg, <span class="string">&quot;$1&quot;</span> + sep + <span class="string">&quot;$2&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;integer&#125;</span><span class="subst">$&#123;decimal&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(thousands(<span class="number">1234567890000</span>,<span class="string">&#x27;,&#x27;</span>)) <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>解法二 利用前向查找结合 <code>/(?!^)(?=(\d&#123;3&#125;)+$)/g</code> (我们假设是正整数，小数的话，和方法一一样，分割一下就行) 或者 可以写成 <code>/(?&lt;=\d+)(?=(\d&#123;3&#125;)+$)/g</code> 以及 <code>\B(?=(\d&#123;3&#125;)+$)</code> 总之都是为了过滤边界条件</li>
+</ul>
+<p><img src="http://blogimage.lemonlife.top/202003250158_667.png?/" alt="/(?!^)(?=(\d{3})+$)/g" /></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;123456789&quot;</span>.replace(<span class="regexp">/(?&lt;=\d+)(?=(\d&#123;3&#125;)+$)/g</span>,<span class="string">&#x27;,&#x27;</span>) <span class="comment">// 123,456,789</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;123456789&quot;</span>.replace(<span class="regexp">/(?!^)(?=(\d&#123;3&#125;)+$)/g</span>,<span class="string">&#x27;,&#x27;</span>) <span class="comment">//  123,456,789</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="window操作系统文件路径"><a class="markdownIt-Anchor" href="#window操作系统文件路径"></a> window操作系统文件路径</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">F:\study\javascript\regex\regular expression.pdf</span><br><span class="line"></span><br><span class="line">F:\study\javascript\regex\</span><br><span class="line"></span><br><span class="line">F:\study\\javascript</span><br><span class="line"></span><br><span class="line">F:\</span><br><span class="line"></span><br><span class="line">F:\x*x\</span><br></pre></td></tr></table></figure>
+<p>首先匹配盘符<code>^[a-zA-Z]:\\</code>，接着匹配文件夹，排除一些字符即可<code>[^\\:*&lt;&gt;|'&quot;?,。/]+\\</code> (假设中文标点啥的已经被排除了),文件夹可能出现很多次<code>([^\\:*&lt;&gt;|'&quot;?/]+\\)*</code>,结尾的文件夹没有 <code>\</code> , <code>([^\\:*&lt;&gt;|'&quot;?/]+)?$</code>，所以最后的正则表达式是<br />
+<code>^[a-zA-Z]:\\([^\\:*&lt;&gt;|'&quot;?/]+\\)*([^\\:*&lt;&gt;|'&quot;?/]+)?$</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003241746_567.png?/" alt="window操作系统文件路径" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003241747_272.png?/" alt="匹配结果" /></p>
+<h3 id="校验密码"><a class="markdownIt-Anchor" href="#校验密码"></a> 校验密码</h3>
+<p>规定了密码只能是，大写或者小写字母，或者是数字。且至少含有三种字符中的两种,密码位数只能是6-12位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1234567</span><br><span class="line">abcdef</span><br><span class="line">ABCDEF</span><br><span class="line">ABCDEF234</span><br><span class="line">1ABCDEF</span><br><span class="line">abcDEFG</span><br><span class="line">1abcDEF</span><br></pre></td></tr></table></figure>
+<p>首先可以确定密码只能是大小写字母和数字组成，且位数是6~12位的情况。<code>/^[0-9A-Za-z]&#123;6,12&#125;$/</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003251002_768.png?/" alt="" /></p>
+<p>接下来就是要防止全是数字，或者全是小写字母和全是大写字母的情况出现。很明显就是要给出合适的条件表达式，所以无法就是前项查找，或者后项查找，然而因为是排除，所以就要对查找表达式取反。</p>
+<p>按照前项表达式可在 <code>/^[0-9A-Za-z]&#123;6,12&#125;$/</code> 前添加查找条件,如添加<code>(?!^[0-9]&#123;6,12&#125;$)</code>过滤掉都是数字的情况，同理针对大小写字母可以写出如下表达式。</p>
+<p><code>(?!^[0-9]&#123;6,12&#125;$)(?!^[A-Z]&#123;6,12&#125;$)(?!^[a-z]&#123;6,12&#125;$)^[0-9A-Za-z]&#123;6,12&#125;$</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003251052_816.png?/" alt="前项查找" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251052_312.png?/" alt="" /></p>
+<p>同理也可采用后项查找，把查找条件放在表达式后面。</p>
+<p><img src="http://blogimage.lemonlife.top/202003251054_824.png?/" alt="/[0-9A-Za-z]{6,12}$(?&lt;!^[0-9]{6,12}$)(?&lt;![a-z]{6,12})/g" /></p>
+<h3 id="匹配日期"><a class="markdownIt-Anchor" href="#匹配日期"></a> 匹配日期</h3>
+<p>匹配出用 <code>-</code>用做分割符的日期 <code>xxxx-xx-xx</code>,或者用 <code>/ .</code> 做为分隔符,对于<code>xxxx-xx.xx</code>这种分隔符不一致的不匹配。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2016-06-12</span><br><span class="line">2016&#x2F;06&#x2F;12</span><br><span class="line">2016.06.12</span><br><span class="line">2016-06.12</span><br><span class="line">2016.06&#x2F;12</span><br></pre></td></tr></table></figure>
+<p>需要引入一个方向引用的概念，在正则表达式中使用<code>\1</code>匹配第一个()表达式中的匹配到内容。 用<code>\2</code> 匹配第二个括号表达式中匹配的内容。例如正则表达式<code>/(one),(two),(three),\1,\3/g</code>直接看图吧</p>
+<p><img src="http://blogimage.lemonlife.top/202003251109_562.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251109_87.png?/" alt="" /></p>
+<p>所以日期的正则表达式就容易写了 <code>/^\d&#123;4&#125;(-|\x2f|\x2e)d&#123;2&#125;\1d&#123;2&#125;$/g</code> (2f,2e是16进制47,46表示/和.) ，如下图：</p>
+<p><img src="http://blogimage.lemonlife.top/202003251118_437.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251118_179.png?/" alt="" /></p>
+<h3 id="单词首字母转成大写"><a class="markdownIt-Anchor" href="#单词首字母转成大写"></a> 单词首字母转成大写</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is a programming technique which will help you parallelize your code and speed up performance</span><br></pre></td></tr></table></figure>
+<p>题目的思路很明确就是如何匹配到单词的首字母的问题，因此我们可以采用 <code>(\b\w)</code>来匹配单词首字母。</p>
+<p><img src="http://blogimage.lemonlife.top/202003251151_238.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251152_538.png?/" alt="" /></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleize</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> str.toLowerCase().replace(<span class="regexp">/(\b\w)/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> c.toUpperCase();</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line">titleize(<span class="string">&#x27;上述文本&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://blogimage.lemonlife.top/202003251153_928.png?/" alt="代码执行结果" /></p>
+<h3 id="匹配ipv4地址"><a class="markdownIt-Anchor" href="#匹配ipv4地址"></a> 匹配IPv4地址</h3>
+<p><code>((25[0-5]|2[0-4]\d|[01]?\d?\d)\.)&#123;3&#125;(25[0-5]|2[0-4]\d|[01]?\d?\d)</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003251325_470.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251326_432.png?/" alt="IPV4匹配结果" /></p>
+<h3 id="匹配国内身份证号"><a class="markdownIt-Anchor" href="#匹配国内身份证号"></a> 匹配国内身份证号</h3>
+<p>身份证号(15位、18位数字)，最后一位是校验位，可能为数字或字符X。</p>
+<p><code>(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003251330_597.png?/" alt="" /></p>
+<h3 id="匹配国内手机号码"><a class="markdownIt-Anchor" href="#匹配国内手机号码"></a> 匹配国内手机号码</h3>
+<p><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/434432697263212804.html">三大运营商号码段~2019年</a></p>
+<p>170为虚拟号码要排除，166,198,199 是新增号码段，所以正则表达式为</p>
+<p><code>/^(?!170)^((13|14|15|17|18)[0-9]|166|198|199)\d&#123;8&#125;$/g</code></p>
+<p><img src="http://blogimage.lemonlife.top/202003251346_11.png?/" alt="" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251344_947.png?/" alt="匹配结果" /></p>
+<h3 id="座机号码匹配"><a class="markdownIt-Anchor" href="#座机号码匹配"></a> 座机号码匹配</h3>
+<p>注意开始符号<code>^</code>和结束符号 <code>$</code> 的位置，注意不要把 <code>/^((\d&#123;3&#125;-)?\d&#123;8&#125;|(\d&#123;4&#125;-)?\d&#123;7&#125;)$/g</code>  写成了<code>/^(\d&#123;3&#125;-)?\d&#123;8&#125;|(\d&#123;4&#125;-)?\d&#123;7&#125;$/g</code>  ,这和正则表达式运算符优先级有关，不细说了直接看图</p>
+<p><img src="http://blogimage.lemonlife.top/202003251354_853.png?/" alt="正确的写法" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251355_657.png?/" alt="错误的写法" /></p>
+<p><img src="http://blogimage.lemonlife.top/202003251356_902.png?/" alt="匹配结果" /></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琅琊旻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://wmwgithub.github.io/2020/03/21/regular-expression/">https://wmwgithub.github.io/2020/03/21/regular-expression/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wmwgithub.github.io">琅琊旻</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></div><div class="addthis_inline_share_toolbox pull-right"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e33bf91133aab4b" async></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/03/24/leetcode-the-masseuse-lcci/"><i class="fa fa-chevron-left">  </i><span>按摩师~动态规划</span></a></div><div class="next-post pull-right"><a href="/2020/03/21/web-fundamentals-geektime/"><span>浏览器工作原理-chrome篇</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '55b93500c699e46ecd3c',
+  clientSecret: 'b30789a22c5e9d2d1cff1a0aeb9d2af82ff4c6d9',
+  repo: 'wmwgithub.github.io',
+  owner: 'wmwgithub',
+  admin: 'wmwgithub',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2021 By 琅琊旻</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
