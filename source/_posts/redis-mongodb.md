@@ -131,7 +131,17 @@ redis 常用的 hash map 操作。多用于聚合数据。
 ### 持久化
 ![redis 持久化方式](https://blogimage.lemonlife.top/20210829170412.png)
 
+### 分布式
 
+- 强一致性
+请求到达 redis 集群时。redis 必须写完所有的机器，才能给客户端返回。但是只要有一个机器不可用了就会导致整个集群无法正常工作。
+强一致性一定程度上会影响服务的可用性。
+![强一致性流程](https://blogimage.lemonlife.top/20210829205743.png)
+- 弱一致性
+![弱一致性流程，redis默认采用的方式](https://blogimage.lemonlife.top/20210829210034.png)
+- 最终一致性
+最终一致性是指 redis 将数据的操作成功写入某个黑盒程序后，返回给客户端，其他的机器通过消费黑盒中的数据来达到和主机器一样的数据。实现最终一致性。
+![最终一致性](https://blogimage.lemonlife.top/20210829211654.png)
 ## 多线程
 
 ![传统Redis和Redis 6 多线程 模型对比](https://blogimage.lemonlife.top/20210829133707.png)

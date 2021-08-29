@@ -5,8 +5,9 @@
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "deploy": "inspirecloud deploy",
+    "server": "hexo server",
+    "dev": "inspirecloud dev"
   },
   "hexo": {
     "version": "5.2.0"
