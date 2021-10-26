@@ -1,1 +1,10 @@
-# 琅琊旻的博客源码和md文件
+# Blog By LYM
+
+> 使用字节 [轻服务](https://qingfuwu.cn/) 部署。
+- 博客地址 (https://qcjw45.app.cloudendpoint.cn/)
+
+```base
+yarn 
+yarn build
+yarn deploy
+```
