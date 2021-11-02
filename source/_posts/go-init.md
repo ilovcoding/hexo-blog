@@ -82,8 +82,97 @@ func main() {
 	s1.PrintInfo() // 王 18 女
 }
 ```
+### 多态
+
 ## 函数
 函数是一等公民。
+
+### 延迟调用 defer
+
+当前函数栈结束的时候才运行对应的函数，按照出栈的顺序从后往前调用
+```go
+package defer_test
+
+import "fmt"
+
+func main() {
+	fmt.Println(1)
+	defer fmt.Println(2)
+	defer fmt.Println(3)
+	fmt.Println(4)
+}
+
+//  输出 1 4 3 2
+```
+![defer 函数执行示意图](https://blogimage.lemonlife.top/20211103010729.png)
+
+
+## 异常处理
+### 逻辑边界处理
+自己通过一些边界条件的判断，过滤掉不合适的场景。
+```go
+func test(a int, b int) (value int, err error) {
+	if b == 0 {
+		return 0, errors.New("runtime error")
+	} else {
+		return a / b, nil
+	}
+}
+
+func main() {
+	
+	if value, err := test(10, 10); err == nil {
+		println(value)
+	}
+}
+```
+### panic 
+程序出现异常，程序会主动调用 panic 并崩溃。 
+
+### recover 
+捕获函数错误，之在 `defer`调用的函数生效。
+```go
+func demo(i int) {
+	var arr [10]int
+	defer func() {
+		err := recover()
+		if err != nil {
+			fmt.Println(err)
+		}
+	}()
+	arr[i] = 100
+}
+
+func main() {
+	fmt.Println("1")
+	demo(10)
+	fmt.Println("2")
+}
+// 1
+// runtime error: index out of range [10] with length 10
+// 2
+```
+- 如果使用 如下的方式则无法捕获异常，因为在defer定义之前异常已经发生了
+
+```go
+func demo(i int) {
+	var arr [10]int
+	arr[i] = 100
+	defer func() {
+		err := recover()
+		if err != nil {
+			fmt.Println(err)
+		}
+	}()
+}
+
+func main() {
+
+	fmt.Println("1")
+	demo(10)
+	fmt.Println("2")
+}
+```
 
 # 参考资料
 - [uber go 代码规范](https://github.com/uber-go/guide)
