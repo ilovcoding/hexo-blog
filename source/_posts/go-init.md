@@ -40,7 +40,54 @@ EOF
 |string/[]byte| [0xE4,0xB8,0xAD]
 
 [阮一峰Unicode 和 utf8](https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
-
+### 字符串处理函数
+- 包含
+ `strings.Contains` 查找字符串中，是否包含另一个字符串。
+```go
+   str := "hello world"
+   strings.Contains(str, "he")
+//    true
+```
+- 拼接
+`strings.Join` 使用特定字符，拼接字符数组。
+```go
+	s := []string{"1", "2", "3"}
+	strings.Join(s, "-")
+```
+- 查找
+`strings.Index()` 查找字符串具体的字符位置。
+```go
+str:="1234"
+strings.Index(str,"1") // 0
+strings.Index(str,"3") // 2
+```
+- 替换
+`strings.Replace(原字符串,被替换内容,替换内容,替换次数),替换次数小于0表示 全替换。
+```go
+str:="kraken"
+strings.Replace(str,"kraken","lym",1) 
+```
+- 分割
+strings.Split(原字符串,分割标志)
+```go
+str:="kraken"
+strings.Split(str,"k") 
+```
+- 移除
+strings(str,移除标志),移除首尾指定的字符串
+```go
+str:=" hello "
+strings.Trim(str," ")
+```
+- 按空格分割
+strings.Fields(str) 去除原有字符串中所有空格后，并且按照原有字符串空格位置分割
+```go
+str:="   my name is   kraken    "
+strings.Fields(str)
+// [my name is kraken]
+```
+### 字符串类型转化
+将字符串转化成其他数据类型，或者将其他数据类型的数据转化成字符串。一般使用包[strconv](https://pkg.go.dev/strconv)
 ## 对象
 ### 方法
 go 语言可以给定义的任何类型，绑定该类型的方法。
