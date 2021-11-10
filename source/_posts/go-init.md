@@ -244,6 +244,62 @@ channel 是 Go 语言的一个核心类型可以把它看成管道，并发核�
 ```go
 make(chan 在 channel 中传递的数据类型,容量)
 ```
+### 生产者消费者模型
+### 定时器
+- 周期定时器 `time.Ticker(time.Second)`
+```go
+func main(){
+ 
+}
+```
+### Select
+通过 select 可以监听多个 channel 的数据流动。select 实现 fibonacci 数列；
+```go
+func fibonacci(ch <-chan int,quit <-chan bool){
+
+	for{
+		select {
+			case num : <- ch:
+				fmt.Print(num," ")
+	 		case <- quit:
+			 	return
+		 }
+	}
+}
+
+func main(){
+	ch := make(chan int)
+	quit := make(chan bool)
+	go fibonacci(ch,quit)
+	for i:=0;i<20{
+		ch <- x
+		x,y = y,x+y
+	}
+	quit <- true
+}
+```
+## 锁机制
+### 死锁
+- channel 至少在两个以上的 GO 程中进行通信。
+```go
+func main(){
+	ch:=make(chan int)
+	ch <- 789 // 这一行写入时候没有读取端 导致写入阻塞死锁。 
+	num: =<- ch
+	fmt.Println("num=",num)
+}
+```
+
+```go
+func main(){
+	ch:=make(chan int)
+	num: =<- ch  // 这一行读取的时候没有写入端 读取阻塞死锁。 
+	fmt.Println("num=",num)
+	go fun(){
+		ch <- 789	
+	}()
+}
+```
 # 参考资料
 - [uber go 代码规范](https://github.com/uber-go/guide)
 - [go lint 代码静态检查](https://golangci-lint.run/usage/install/#local-installation)
