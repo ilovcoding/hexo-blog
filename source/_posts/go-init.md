@@ -245,6 +245,30 @@ channel 是 Go 语言的一个核心类型可以把它看成管道，并发核�
 make(chan 在 channel 中传递的数据类型,容量)
 ```
 ### 生产者消费者模型
+```go
+func producer(out chan<- int){
+	for i:=0;i<10;i++ {
+		out <- i
+		fmt.Printf("生产者 生产 %d\n", i)
+	}
+	close(out)
+}
+
+func consumer(in <-chan int){
+	for num := range in {
+		fmt.Printf("消费者，消费： %d\n",num)
+	}
+}
+
+func main(){
+	product := make(chan int)
+	go producer(product)
+	consumer(product)
+	for {
+		;
+	}
+}
+```
 ### 定时器
 - 周期定时器 `time.Ticker(time.Second)`
 ```go
@@ -300,6 +324,74 @@ func main(){
 	}()
 }
 ```
+### 互斥死锁
+```go
+var mutex sync.Mutex
+func printer(str string){
+	mutex.Lock()
+	for _,ch := rang str{
+		fmt.Printf("%c",c)
+	}
+	time.Sleep(time.Millisecond * 3000)
+}
+
+func print1(){
+	printer("hello")
+}
+
+func print1(){
+	printer("world")
+}
+
+func main(){
+	go print1("hello")
+	go print2("world")
+}
+```
+### 读写锁
+`swync.RWMutex`
+```go
+var rwMutex sync.RWMuyex
+var value int
+func readGo(){
+	for {
+		rwMutex.RLock()
+		num := value
+		fmt.Printf("读出数据",num)
+		rwMutex.RUnLock()
+	}
+}
+
+func writeGo(){
+	for{
+		num:=rand.Intn(n:1000)
+		rwMutex.Lock()
+		value =  num
+		fmt.Printf("写入", num)
+		// 没有作用 只是为了放大实现现象
+		time.Sleep(time.Millisecond * 3000) 
+		rwMutex.Unlock()
+	}
+}
+
+func main(){
+	for i:=0;i<5;i++{
+		go readGo()
+	}
+	for i:=0;i<5;i++{
+		go writeGo()
+	}
+}
+```
+
+### 条件变量
+1. 创建条件变量 var cond sync.Cond
+2. 指定条件变量使用的锁 cond.L = new(sync.Mutex)
+3. cond.L.Lock() 给公共区加锁(互斥量)
+4. 判断是否达到 阻塞条件(缓冲区满/空) --for循环判断 `for len(ch) == cap(ch) { cond.Wait() } 1) 阻塞 2) 解锁 3) 加锁`。
+5. 访问公共区 - 被读、写、打印的数据
+6. 解锁条件变量的锁 condL.UnLock()
+7. 唤醒目前被阻塞的线程。
 # 参考资料
 - [uber go 代码规范](https://github.com/uber-go/guide)
 - [go lint 代码静态检查](https://golangci-lint.run/usage/install/#local-installation)
