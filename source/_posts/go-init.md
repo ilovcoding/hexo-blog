@@ -392,6 +392,11 @@ func main(){
 5. 访问公共区 - 被读、写、打印的数据
 6. 解锁条件变量的锁 condL.UnLock()
 7. 唤醒目前被阻塞的线程。
+
+## 网络编程
+
+**后续部分已转移至飞书文档	
+[https://meta1024.feishu.cn/docs/doccnWpuy6Bs4y5SyahI0G31n2f](https://meta1024.feishu.cn/docs/doccnWpuy6Bs4y5SyahI0G31n2f)**
 # 参考资料
 - [uber go 代码规范](https://github.com/uber-go/guide)
 - [go lint 代码静态检查](https://golangci-lint.run/usage/install/#local-installation)
