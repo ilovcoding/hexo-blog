@@ -593,8 +593,6 @@ let myProxy = new MyProxy({ name: "wmw", son: { sonName: "sonName" } }, {
 myProxy.name = 'xxx'
 myProxy.year = "2020"
 ```
->[源码](https://github.com/wmwgithub/typescript-design-mode/blob/master/src/proxy/proxy.js)
-
 
 ### Proxy 实现Vue数据双向绑定
 ```html
@@ -648,7 +646,7 @@ myProxy.year = "2020"
   }) 
 </script>
 ```
->[源码](https://github.com/wmwgithub/typescript-design-mode/blob/master/src/proxy/vue/index.html)
+>[源码](https://github.com/ilovcoding/typescript-design-mode/blob/main/src/proxy/vue/index.html)
 
 ### 单例模式/工厂模式
 ```JS

@@ -219,8 +219,6 @@ function delayFun(fn: Function, interval: number = 500) {
 > `Number(intervalUse && interval)` 第一次调用不需要延迟,
 即`intervalUse = false` 此时`Number(intervalUse && interval)= 0` 函数立即执行;相反 如果这时候用户继续有操作;`intervalUse = true;Number(intervalUse && interval)=interval` 定时器生效;用户操作被延迟
 
-> 案例源码[GitHub链接](https://github.com/wmwgithub/blog-demo/blob/master/2019_11_6/1/onresize.html)
-
 可以看到设置`interval=1000`后在用户平滑的改变浏览器窗口大小时候函数每秒钟只执行了一次
 ![](http://blogimage.lemonlife.top/201911061432_908.png)
 
@@ -263,7 +261,7 @@ function delayFun(fn: Function, interval: number = 500) {
   }
   create(array,100)
 ```
-> 案例源码[GitHub链接](https://github.com/wmwgithub/blog-demo/blob/master/2019_11_6/2/index_timer.html)
+> 案例源码[GitHub链接](https://github.com/ilovcoding/blog-demo/blob/master/2019_11_6/2/index_timer.html)
 
 ### 惰性加载函数
 >Web开发中不同浏览器运行环境下不可避免的要进行一些适配操作，如果每次调用一个事件都通过`if else`来对不同的浏览器的解决方案，将会带来性能的损耗，可以把这写需要适配的函数抽离成惰性加载的方式来调用
@@ -313,7 +311,7 @@ let addEvent = (function () {
 ```
 > 对比第一个 函数每次运行都需要`if else`判断，肯定要消耗性能，对比第二个浏览器在加载代码时候要做函数运算延长了页面响应时间;第三种方式在第一次绑定事件的时候重写了绑定事件的方法，因此 只有在第一次 使用该函数的时候需要执行`if else`操作，与第二种方法不同的是，它把本来在浏览器加载代码所消耗的时间，转移到了函数第一次运行的时候，加快了页面的响应
 
-> 案例源码[GitHub链接](https://github.com/wmwgithub/blog-demo/blob/master/2019_11_6/3/index.html)
+> 案例源码[GitHub链接](https://github.com/ilovcoding/blog-demo/blob/master/2019_11_6/3/index.html)
 
 *以上内容是我看完 JavaScript设计模式与开发实战 第一部分之后自己总结的，感谢曾(da)探(lao)*
 

@@ -18,7 +18,7 @@ tsc -version
 tsc [fileName].ts
 ```
 ### 采用webpack的方式
-> 因为不想频繁的执行tsc命令自己搭建了，webpack的环境。[配置链接](https://github.com/wmwgithub/typescript-design-mode/blob/master/webpack.config.js),clone下来项目后,在项目`src` 目录下编写对应ts代码即可,webpack会自动编译ts代码,`app.ts`是程序主入口。因此函数调用要在`app.ts`中运行。
+> 因为不想频繁的执行tsc命令自己搭建了，webpack的环境。[配置链接](https://github.com/ilovcoding/typescript-design-mode/blob/master/webpack.config.js),clone下来项目后,在项目`src` 目录下编写对应ts代码即可,webpack会自动编译ts代码,`app.ts`是程序主入口。因此函数调用要在`app.ts`中运行。
 ### TypeScript 数据类型
 定义ts变量需要指定类型。或者会根据第一个赋值变量分配默认类型。未赋值变量默认类型为`any`
 #### 布尔类型(boolean)

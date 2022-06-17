@@ -9,7 +9,7 @@
     "deploy": "hexo deploy"
   },
   "hexo": {
-    "version": "5.2.0"
+    "version": "5.4.2"
   },
   "dependencies": {
     "@upupming/hexo-renderer-markdown-it-plus": "^2.0.2",
@@ -24,11 +24,6 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^2.0.0",
-    "hexo-theme-melody": "^1.9.0",
-    "@byteinspire/api": "^1.0.5",
-    "@koa/router": "^8.0.2",
-    "koa": "^2.11.0",
-    "koa-body": "^4.1.1",
-    "koa-static": "^5.0.0"
+    "hexo-theme-melody": "^1.9.0"
   }
 }

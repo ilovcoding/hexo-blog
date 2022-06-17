@@ -156,7 +156,7 @@ public class People implements PeopleInterface {
     }
 }
 ```
-![实现 Implementation](https://blogimage.lemonlife.top/20210808222006.png)
+![实现 Implementation](http://blogimage.lemonlife.top/20210808222006.png)
 ## 关联关系 （Association）
 表示类与类之间的联系。是一种特殊的依赖关系。相互之间的一种依赖关系。例如一个人（`People`）生病了可能需要多个医生 `Doctor` 配合治疗。同时医生可能也在治疗多个病人。这种类与类之间存在互相使用的场景。可以定义为关联关系，可以是一对一或者一对多的关系。
 
@@ -169,4 +169,4 @@ public class People  {
    public List<Doctor> doctors;
 }
 ``` 
-![关联关系 Association](https://blogimage.lemonlife.top/20210808231122.png)
+![关联关系 Association](http://blogimage.lemonlife.top/20210808231122.png)

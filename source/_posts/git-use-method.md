@@ -12,7 +12,7 @@ tags: "Git"
 ```
 - Linux(Centos)
 
-  自己的仓库地址里面有简单的一键安装脚本 [git-centos.sh](https://github.com/wmwgithub/shell)
+  自己的仓库地址里面有简单的一键安装脚本 [git-centos.sh](https://github.com/ilovcoding/shell)
 
 ## 码云(gitee)配置ssh密钥
 - 见网友的[简书连接](https://www.jianshu.com/p/416ac815b2b1)

@@ -787,4 +787,4 @@ inOrder(heapSort.tree) // 1 3 4 5 6 7 8 9
 ### 最后总结
 不同的排序算法有不同的应用场景,一般情况下如果数据都是正数，可以考虑采用基数排序，计数排序，桶排序之类的排序算法。其中计数排序算是最耗费空间的了，也是拿空间换时间最明显的那个😁
 
->博客中中JavaScript部分是我自己写的,Java和文字引用于马老师,*马士兵教育公开课*。JS部分[源码](https://github.com/wmwgithub/typescript-design-mode/tree/master/src/sort)
+>博客中中JavaScript部分是我自己写的,Java和文字引用于马老师,*马士兵教育公开课*。

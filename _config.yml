@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://wmwgithub.github.io
+url: https://lemonlife.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -82,6 +82,6 @@ theme: melody
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:wmwgithub/wmwgithub.github.io.git
+  repo: git@github.com:ilovcoding/ilovcoding.github.io.git
   branch: main
   message: ""
