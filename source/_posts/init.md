@@ -27,11 +27,11 @@ hexo server
 git clone -b master https://github.com/Molunerfinn/hexo-theme-melody themes/melody
 npm install hexo-renderer-jade hexo-renderer-stylus --save
 ```
-![安装主题](http://blogimage.lemonlife.top/201910302300_80.png?/)
+![安装主题](http://blogimage.lemonlife.top/201910302300_80.png/)
 - 修改配置文件，使用先安装的主题
 
 修改test文件夹里面的`_config.yml`的文件的`theme landspcape`改成`theme melody`然后运行`hexo server`启动项目
-![修改配置文件](http://blogimage.lemonlife.top/201910302301_62.png?/)
+![修改配置文件](http://blogimage.lemonlife.top/201910302301_62.png/)
 ## 创建新帖子
 
 ``` 
