@@ -235,8 +235,8 @@
     # footer_custom_text:
     
     ICP:
-      enable: false
-      #text:
+      enable: true
+      text: 皖ICP备18014452号-2
     
     # busuanzi count for PV / UV in site
     busuanzi:
@@ -268,7 +268,7 @@
     # Follow Me Button
     follow:
       enable: true
-      url: 'https://github.com/wmwgithub'
+      url: 'https://github.com/ilovcoding'
       text: GitHub关注
     
     # Ads

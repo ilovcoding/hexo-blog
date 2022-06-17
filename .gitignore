@@ -6,4 +6,6 @@ node_modules/
 .deploy_git
 /delete
 .inspirecloud.service*
-/public
+/public/*
+# save came
+!/public/cname
