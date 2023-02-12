@@ -209,3 +209,8 @@ cluster._getServer = function(obj, options, cb) {
 > 通过上述分析得出结论： cluster 多个进程能共享一个网络端口的原因是因为，child process 在处理 listen的时候，通过 IPC 获取到了 main process 的 handle，因此其实是服用了 main process 的资源，实现了不同进程的端口复用。
 
 
+# 处理TCP连接
+
+PM2 默认采用的方式是在主进程接收到 socket 连接后交给 worker 处理 socket 文件描述符，即`accept` 操作发生在worker进程中，至于交给哪个 worker处理 采用的是 `Round-Robin` 算法。
+
+![pm2 连接](https://p1.hfutonline.cn/a-img/20230212132426.png)
