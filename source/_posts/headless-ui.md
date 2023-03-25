@@ -18,4 +18,4 @@ tags: Web
 # 参考项目
 - [https://headlessui.com/](https://headlessui.com/)
 - [https://chakra-ui.com/docs/components](https://chakra-ui.com/docs/components)
--[https://github.com/jxom/awesome-react-headless-components](https://github.com/jxom/awesome-react-headless-components)
+- [https://github.com/jxom/awesome-react-headless-components](https://github.com/jxom/awesome-react-headless-components)
